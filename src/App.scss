@@ -1,1 +1,53 @@
 /* Other rules */
+body {
+  font-family: "Roboto", sans-serif;
+}
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.Header {
+  display: flex;
+  margin: 20px auto;
+}
+
+.Hero-background {
+  height: 400px;
+  background-color: rgb(236, 229, 229);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .Hero {
+    .Hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: white;
+      height: 250px;
+      width: 250px;
+      padding: 34px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.Home-content {
+  margin-top: 24px;
+  display: flex;
+}
+
+.Home-offer {
+  .Home-offer-user {
+    display: flex;
+    align-items: center;
+    img {
+      height: 30px;
+      border-radius: 50%;
+    }
+  }
+  .Home-offer-info {
+    display: flex;
+    justify-content: space-between;
+  }
+}
