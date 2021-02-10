@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const HomeOffer = ({ offer }) => {
   return (
-    <div className="Home-offer">
+    <Link to="/Offer" className="Home-offer" style={{ textDecoration: "none" }}>
       <div className="Home-offer-user">
         <img src={offer.owner.account.avatar.secure_url} alt="avatar" />
         <p>{offer.owner.account.username}</p>
@@ -12,15 +13,17 @@ const HomeOffer = ({ offer }) => {
       </div>
       <div className="Home-offer-info">
         <div className="Home-offer-info-left">
-          <p>{offer.product_price}</p>
+          <p>
+            <span>{offer.product_price} €</span>
+          </p>
           <p>{offer.product_details[1].TAILLE}</p>
           <p>{offer.product_details[0].MARQUE}</p>
         </div>
         <div className="Home-offer-info-right">
-          <FontAwesomeIcon icon="heart" />
+          <FontAwesomeIcon icon="heart" className="Icon-heart" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
