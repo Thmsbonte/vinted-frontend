@@ -1,4 +1,7 @@
 /* Other rules */
+
+$mainColor: #15aeb7;
+
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -10,6 +13,89 @@ body {
 .Header {
   display: flex;
   margin: 20px auto;
+  align-items: center;
+  justify-content: space-between;
+  .Header-left {
+    display: flex;
+    flex: 1;
+    .Header-logo {
+      margin-right: 50px;
+      img {
+        height: 35px;
+      }
+    }
+    .Header-search {
+      background-color: #f5f6f7;
+      height: 45px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      margin-right: 40px;
+      .Select-header {
+        border-right: solid 1px #e3e4e5;
+        display: flex;
+        background-color: #f5f6f7;
+        box-sizing: border-box;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        margin-right: 10px;
+        height: 100%;
+        select {
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+          margin: 0 10px;
+          color: #babcbe;
+        }
+      }
+      .Select-header:hover {
+        background-color: #e7e9eb;
+      }
+      i {
+        color: #babcbe;
+        margin-right: 10px;
+      }
+      input {
+        height: 100%;
+        border: none;
+        background-color: transparent;
+      }
+    }
+  }
+  .Header-right {
+    button {
+      height: 35px;
+      padding: 0 7px;
+      border-radius: 5px;
+    }
+    .Button-signup-login {
+      background-color: white;
+      border: solid 1px $mainColor;
+      color: $mainColor;
+      margin-right: 10px;
+    }
+    .Button-sell {
+      background-color: $mainColor;
+      border: solid 1px $mainColor;
+      color: white;
+      margin-right: 10px;
+    }
+    i {
+      color: $mainColor;
+      margin-right: 10px;
+      padding: 4px 7px;
+      border-radius: 50%;
+      border: solid 1px $mainColor;
+    }
+    select {
+      border: none;
+      background-color: white;
+      cursor: pointer;
+      color: #babcbe;
+      width: 40px;
+    }
+  }
 }
 
 .Hero-background {
