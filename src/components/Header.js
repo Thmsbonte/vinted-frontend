@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo_header from "../assets/img/vinted.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-const Header = ({ userToken, setUser }) => {
+const Header = ({ userInfo, setUser }) => {
+  const history = useHistory();
   return (
     <div className="Header container">
       <div className="Header-left">
@@ -34,11 +35,18 @@ const Header = ({ userToken, setUser }) => {
         </div>
       </div>
       <div className="Header-right">
-        {userToken ? (
-          <button onClick={() => setUser(null)}>Se déconnecter</button>
+        {userInfo.token ? (
+          <button
+            onClick={() => {
+              setUser(null);
+              history.push("/");
+            }}
+          >
+            <p>Bonjour {userInfo.username}</p> <p>Se déconnecter</p>
+          </button>
         ) : (
-          <Link to="/signup" className="Button-signup-login">
-            S'inscrire/Se connecter
+          <Link to="/login" className="Button-signup-login">
+            Se connecter
           </Link>
         )}
         <Link to="#" className="Button-sell">

@@ -1,6 +1,6 @@
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Offer from "./containers/Offer";
 import Home from "./containers/Home";
@@ -12,25 +12,36 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import Signup from "./containers/Signup";
+import Login from "./containers/Login";
 library.add(faSearch, faQuestion, faHeart);
 
 const App = () => {
-  const [userToken, setUserToken] = useState("");
-  const setUser = (token) => {
+  const [userInfo, setUserInfo] = useState("");
+  const setUser = (token, username) => {
     if (token) {
       Cookies.set("userToken", token);
-      setUserToken(token);
+      Cookies.set("username", username);
+      setUserInfo({ token: token, username: username });
     } else {
       Cookies.remove("userToken");
-      setUserToken("");
+      Cookies.remove("username");
+      setUserInfo("");
     }
   };
+
+  useEffect(() => {
+    setUser(Cookies.get("userToken"));
+  }, []);
+
   return (
     <Router>
-      <Header userToken={userToken} setUser={setUser} />
+      <Header userInfo={userInfo} setUser={setUser} />
       <Switch>
         <Route path="/offer/:id">
           <Offer />
+        </Route>
+        <Route path="/login">
+          <Login setUser={setUser} />
         </Route>
         <Route path="/signup">
           <Signup setUser={setUser} />
