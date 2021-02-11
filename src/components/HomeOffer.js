@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 const HomeOffer = ({ offer }) => {
   return (
-    <Link to="/Offer" className="Home-offer" style={{ textDecoration: "none" }}>
+    <Link
+      to={`/Offer/${offer._id}`}
+      className="Home-offer"
+      style={{ textDecoration: "none" }}
+    >
       <div className="Home-offer-user">
         <img src={offer.owner.account.avatar.secure_url} alt="avatar" />
         <p>{offer.owner.account.username}</p>
