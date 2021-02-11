@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo_header from "../assets/img/vinted.png";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ userToken, setUser }) => {
   return (
     <div className="Header container">
       <div className="Header-left">
@@ -33,8 +34,16 @@ const Header = () => {
         </div>
       </div>
       <div className="Header-right">
-        <button className="Button-signup-login">S'inscrire/Se connecter</button>
-        <button className="Button-sell">Vends tes articles</button>
+        {userToken ? (
+          <button onClick={() => setUser(null)}>Se déconnecter</button>
+        ) : (
+          <Link to="/signup" className="Button-signup-login">
+            S'inscrire/Se connecter
+          </Link>
+        )}
+        <Link to="#" className="Button-sell">
+          Vends tes articles
+        </Link>
         <i>
           <FontAwesomeIcon icon="question" />
         </i>
