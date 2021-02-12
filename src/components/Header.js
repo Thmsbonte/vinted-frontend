@@ -5,6 +5,7 @@ import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import { useState, useCallback } from "react";
 import debounce from "lodash.debounce";
+import LabeledTwoThumbs from "./Slider";
 
 const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
   const [modal, setModal] = useState({
@@ -52,16 +53,14 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
                   const newFilters = { ...filters };
                   newFilters.title = event.target.value;
                   setFilters(newFilters);
-                  debounce(() => {
-                    fetchData(
-                      newFilters.title,
-                      filters.priceMin,
-                      filters.priceMax,
-                      filters.sort,
-                      filters.skip,
-                      filters.limit
-                    );
-                  }, 1);
+                  fetchData(
+                    newFilters.title,
+                    filters.priceMin,
+                    filters.priceMax,
+                    filters.sort,
+                    filters.skip,
+                    filters.limit
+                  );
                 }}
               />
             </div>
@@ -69,7 +68,7 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
               <p>Trier par prix</p>
               <div
                 className="Filter-sort"
-                onClick={(event) => {
+                onClick={() => {
                   const newFilters = { ...filters };
                   newFilters.sort === "price-asc"
                     ? (newFilters.sort = "price-desc")
@@ -85,10 +84,26 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
                   );
                 }}
               >
-                {/* {filters.sort==="price-asc" ? style={marginLeft : 0} : style={marginLeft : 0}} */}
-                <i>
+                <i
+                  style={
+                    filters.sort === "price-asc"
+                      ? { marginLeft: 0 }
+                      : { marginLeft: 25 }
+                  }
+                >
                   <FontAwesomeIcon icon="arrows-alt-v" size="sm" />
                 </i>
+              </div>
+              <p>Prix entre : </p>
+              <div className="Filter-price">
+                <LabeledTwoThumbs
+                  STEP={5}
+                  MIN={0}
+                  MAX={500}
+                  filters={filters}
+                  setFilters={setFilters}
+                  fetchData={fetchData}
+                />
               </div>
             </div>
           </div>

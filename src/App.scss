@@ -78,10 +78,11 @@ body {
           .Filter-sort {
             background-color: $mainColor;
             height: 20px;
-            width: 50px;
+            width: 48px;
             display: flex;
             align-items: center;
             border-radius: 10px;
+            margin-right: 10px;
             i {
               background-color: white;
               color: rgb(85, 83, 83);
@@ -89,6 +90,10 @@ body {
               border-radius: 50%;
               border: solid 1px rgb(190, 184, 184);
             }
+          }
+          .Filter-price {
+            display: flex;
+            width: 300px;
           }
         }
       }
