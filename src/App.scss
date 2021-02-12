@@ -27,42 +27,69 @@ body {
           height: 35px;
         }
       }
-      .Header-search {
-        background-color: #f5f6f7;
-        height: 45px;
+      .Header-search-block {
         flex: 1;
-        display: flex;
-        align-items: center;
-        border-radius: 5px;
-        margin-right: 40px;
-        .Select-header {
-          border-right: solid 1px #e3e4e5;
-          display: flex;
+        .Header-search-bar {
           background-color: #f5f6f7;
-          box-sizing: border-box;
-          border-top-left-radius: 5px;
-          border-bottom-left-radius: 5px;
-          margin-right: 10px;
-          height: 100%;
-          select {
+          height: 45px;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          border-radius: 5px;
+          margin-right: 40px;
+          .Select-header {
+            border-right: solid 1px #e3e4e5;
+            display: flex;
+            background-color: #f5f6f7;
+            box-sizing: border-box;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            margin-right: 10px;
+            height: 100%;
+            select {
+              border: none;
+              background-color: transparent;
+              cursor: pointer;
+              margin: 0 10px;
+              color: #babcbe;
+            }
+          }
+          .Select-header:hover {
+            background-color: #e7e9eb;
+          }
+          i {
+            color: #babcbe;
+            margin-right: 10px;
+          }
+          input {
+            height: 100%;
             border: none;
             background-color: transparent;
-            cursor: pointer;
-            margin: 0 10px;
-            color: #babcbe;
           }
         }
-        .Select-header:hover {
-          background-color: #e7e9eb;
-        }
-        i {
-          color: #babcbe;
-          margin-right: 10px;
-        }
-        input {
-          height: 100%;
-          border: none;
-          background-color: transparent;
+        .Header-filter-block {
+          margin-top: 20px;
+          display: flex;
+          align-items: center;
+          p {
+            font-size: 13px;
+            margin-right: 10px;
+          }
+          .Filter-sort {
+            background-color: $mainColor;
+            height: 20px;
+            width: 50px;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            i {
+              background-color: white;
+              color: rgb(85, 83, 83);
+              padding: 1px 6px;
+              border-radius: 50%;
+              border: solid 1px rgb(190, 184, 184);
+            }
+          }
         }
       }
     }

@@ -1,20 +1,8 @@
 import Hero from "../components/Hero";
 import HomeContent from "../components/HomeContent";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 
-const Home = () => {
-  const [offers, setOffers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://lereacteur-vinted-backend.herokuapp.com/offers"
-    );
-    setOffers(response.data);
-    setIsLoading(false);
-  };
-
+const Home = ({ isLoading, fetchData, offers, setOffers }) => {
   useEffect(() => {
     fetchData();
   }, []);

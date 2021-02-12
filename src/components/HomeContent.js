@@ -1,6 +1,6 @@
 import HomeOffer from "./HomeOffer";
 
-const HomeContent = ({ offers, setOffers }) => {
+const HomeContent = ({ offers }) => {
   return (
     <div className="Home-content container">
       {offers.map((item) => {
