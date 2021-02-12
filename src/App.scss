@@ -2,6 +2,8 @@
 
 $mainColor: #15aeb7;
 
+// GENERAL
+
 body {
   font-family: "Roboto", sans-serif;
   .container {
@@ -9,7 +11,7 @@ body {
     margin: 0 auto;
   }
 
-  // Header component
+  // HEADER
 
   .Header {
     display: flex;
@@ -75,17 +77,46 @@ body {
         display: flex;
         align-items: center;
       }
-      .Button-signup-login {
+      .Button-login {
         background-color: white;
         border: solid 1px $mainColor;
         color: $mainColor;
         margin-right: 10px;
+        width: 160px;
+        display: flex;
+        justify-content: center;
+      }
+      .Button-logout {
+        background-color: white;
+        border: solid 1px $mainColor;
+        color: $mainColor;
+        margin-right: 10px;
+        height: 35px;
+        width: 160px;
+        padding: 0 7px;
+        border-radius: 5px;
+        text-decoration: none;
+        align-items: center;
+        strong {
+          font-weight: 700;
+        }
+        span {
+          cursor: pointer;
+          font-size: 12px;
+        }
+        span:hover {
+          text-decoration: underline;
+        }
       }
       .Button-sell {
         background-color: $mainColor;
         border: solid 1px $mainColor;
         color: white;
         margin-right: 10px;
+        height: 35px;
+        width: 160px;
+        display: flex;
+        justify-content: center;
       }
       i {
         color: $mainColor;
@@ -104,7 +135,90 @@ body {
     }
   }
 
-  // Hero component
+  // MODAL COMPONENT
+  .Modal {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    .Modal-content {
+      background-color: white;
+      width: 350px;
+      margin-top: 8%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 5px;
+      padding-bottom: 50px;
+      .Modal-header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        i {
+          margin-right: 15px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
+      }
+      h1 {
+        font-size: 28px;
+        margin-top: 25px;
+        margin-bottom: 15px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        input {
+          margin-top: 10px;
+          border: none;
+          border-bottom: solid 1px rgb(204, 201, 201);
+          height: 35px;
+        }
+        .Modal-newsletter {
+          display: flex;
+          align-items: center;
+          margin-top: 20px;
+          input {
+            margin-top: 0;
+            border: none;
+            border-bottom: solid 1px rgb(204, 201, 201);
+            height: 35px;
+          }
+          p {
+            color: #666666;
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 35px;
+          }
+        }
+        button {
+          margin-top: 30px;
+          background-color: $mainColor;
+          border: solid 1px $mainColor;
+          color: white;
+          height: 35px;
+          width: 250px;
+          border-radius: 5px;
+          font-size: 14px;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: $mainColor;
+        font-size: 12px;
+        margin-top: 20px;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // HERO COMPONENT
 
   .Hero-background {
     height: 500px;

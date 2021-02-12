@@ -10,10 +10,9 @@ import {
   faSearch,
   faQuestion,
   faHeart,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import Signup from "./containers/Signup";
-import Login from "./containers/Login";
-library.add(faSearch, faQuestion, faHeart);
+library.add(faSearch, faQuestion, faHeart, faTimes);
 
 const App = () => {
   const [userInfo, setUserInfo] = useState("");
@@ -39,12 +38,6 @@ const App = () => {
       <Switch>
         <Route path="/offer/:id">
           <Offer />
-        </Route>
-        <Route path="/login">
-          <Login setUser={setUser} />
-        </Route>
-        <Route path="/signup">
-          <Signup setUser={setUser} />
         </Route>
         <Route path="/">
           <Home />
