@@ -23,9 +23,11 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
       )}
       <div className="Header container">
         <div className="Header-left">
-          <div className="Header-logo">
-            <img src={logo_header} alt="Vinted-logo" />
-          </div>
+          <Link to="/">
+            <div className="Header-logo">
+              <img src={logo_header} alt="Vinted-logo" />
+            </div>
+          </Link>
           <div className="Header-search-block">
             <div className="Header-search-bar">
               <div className="Select-header">

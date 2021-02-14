@@ -17,7 +17,7 @@ import {
 library.add(faSearch, faQuestion, faHeart, faTimes, faArrowsAltV);
 
 const App = () => {
-  const [userInfo, setUserInfo] = useState("");
+  const [userInfo, setUserInfo] = useState({ token: "", username: "" });
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState({
@@ -29,6 +29,7 @@ const App = () => {
     limit: "",
   });
 
+  // Creation of user's cookies
   const setUser = (token, username) => {
     if (token) {
       Cookies.set("userToken", token);
@@ -41,6 +42,16 @@ const App = () => {
     }
   };
 
+  // At the opening of the App, if a user token exist, update of user's information
+  useEffect(() => {
+    Cookies.get("userToken") &&
+      setUserInfo({
+        token: Cookies.get("userToken"),
+        username: Cookies.get("username"),
+      });
+  }, []);
+
+  // Get home page data according to header filters
   const fetchData = async (title, priceMin, priceMax, sort, skip, limit) => {
     console.log("J'ai fait une requête");
     let url = "https://lereacteur-vinted-backend.herokuapp.com/offers?";
@@ -67,10 +78,6 @@ const App = () => {
     setOffers(response.data);
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    setUser(Cookies.get("userToken"));
-  }, []);
 
   return (
     <Router>

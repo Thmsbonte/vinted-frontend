@@ -32,17 +32,27 @@ const Offer = () => {
           <img src={offer.product_image.secure_url} alt="Product" />
         </div>
         <div className="Offer-product_info">
-          <span>{offer.product_price}</span>
+          <div className="Product-price">{offer.product_price} €</div>
           {offer.product_details.map((item) => {
             let objectKeys = Object.keys(item);
-            console.log(objectKeys);
             return (
               <div className="Offer-product_details">
                 <p>{objectKeys[0]}</p>
-                <p>{item[objectKeys[0]]}</p>
+                <p>{item[objectKeys[0]].toUpperCase()}</p>
               </div>
             );
           })}
+          <div className="Product_presentation">
+            <h2>{offer.product_name}</h2>
+            <p>{offer.product_description}</p>
+            <div className="Offer-user">
+              <img src={offer.owner.account.avatar.secure_url} alt="avatar" />
+              <p>{offer.owner.account.username}</p>
+            </div>
+            <div className="Offer-buy-button">
+              <button>Acheter</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
