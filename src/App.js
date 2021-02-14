@@ -20,6 +20,7 @@ const App = () => {
   const [userInfo, setUserInfo] = useState({ token: "", username: "" });
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const [filters, setFilters] = useState({
     title: "",
     priceMin: "",
@@ -53,30 +54,35 @@ const App = () => {
 
   // Get home page data according to header filters
   const fetchData = async (title, priceMin, priceMax, sort, skip, limit) => {
-    console.log("J'ai fait une requête");
-    let url = "https://lereacteur-vinted-backend.herokuapp.com/offers?";
-    if (title) {
-      url = `${url}title=${title}&`;
+    try {
+      let url = "https://lereacteur-vinted-backend.herokuapp.com/offers?";
+      if (title) {
+        url = `${url}title=${title}&`;
+      }
+      if (priceMin) {
+        url = `${url}priceMin=${priceMin}&`;
+      }
+      if (priceMax) {
+        url = `${url}priceMax=${priceMax}&`;
+      }
+      if (sort) {
+        url = `${url}sort=${sort}&`;
+      }
+      if (skip) {
+        url = `${url}skip=${skip}&`;
+      }
+      if (limit) {
+        url = `${url}limit=${limit}&`;
+      }
+      url.substring(0, url.length - 1);
+      const response = await axios.get(url);
+      setOffers(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      setErrorMessage(error.message);
+      setIsLoading(false);
     }
-    if (priceMin) {
-      url = `${url}priceMin=${priceMin}&`;
-    }
-    if (priceMax) {
-      url = `${url}priceMax=${priceMax}&`;
-    }
-    if (sort) {
-      url = `${url}sort=${sort}&`;
-    }
-    if (skip) {
-      url = `${url}skip=${skip}&`;
-    }
-    if (limit) {
-      url = `${url}limit=${limit}&`;
-    }
-    url.substring(0, url.length - 1);
-    const response = await axios.get(url);
-    setOffers(response.data);
-    setIsLoading(false);
   };
 
   return (
@@ -98,6 +104,7 @@ const App = () => {
             fetchData={fetchData}
             offers={offers}
             setOffers={setOffers}
+            errorMessage={errorMessage}
           />
         </Route>
       </Switch>

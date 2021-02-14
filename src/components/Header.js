@@ -101,7 +101,7 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
                 <LabeledTwoThumbs
                   STEP={5}
                   MIN={0}
-                  MAX={500}
+                  MAX={2000}
                   filters={filters}
                   setFilters={setFilters}
                   fetchData={fetchData}

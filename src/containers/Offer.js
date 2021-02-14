@@ -6,6 +6,7 @@ const Offer = () => {
   const { id } = useParams();
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const fetchData = async () => {
     try {
@@ -15,7 +16,9 @@ const Offer = () => {
       setOffer(response.data);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      setErrorMessage(error.message);
+      setIsLoading(false);
     }
   };
 
@@ -24,7 +27,9 @@ const Offer = () => {
   }, []);
 
   return isLoading ? (
-    <p>En cours de chargement</p>
+    <p className="Is-loading">En cours de chargement </p>
+  ) : errorMessage ? (
+    <p className="Error-message">{errorMessage} </p>
   ) : (
     <div className="Offer-background">
       <div className="Offer container">

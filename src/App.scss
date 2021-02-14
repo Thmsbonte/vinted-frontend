@@ -11,6 +11,18 @@ body {
     margin: 0 auto;
   }
 
+  .Error-message {
+    text-align: center;
+    margin-top: 100px;
+    color: rgb(226, 121, 121);
+  }
+
+  .Is-loading {
+    text-align: center;
+    margin-top: 100px;
+    color: rgb(148, 168, 148);
+  }
+
   // HEADER
 
   .Header {

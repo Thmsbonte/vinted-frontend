@@ -11,7 +11,7 @@ const LabeledTwoThumbs = ({
   setFilters,
   fetchData,
 }) => {
-  const [values, setValues] = useState([0, 500]);
+  const [values, setValues] = useState([0, 2000]);
   return (
     <div
       style={{
@@ -99,7 +99,7 @@ const LabeledTwoThumbs = ({
                 padding: "4px",
                 borderRadius: "4px",
                 backgroundColor: "#2DB0BA",
-                width: "35px",
+                width: "40px",
                 textAlign: "center",
               }}
             >

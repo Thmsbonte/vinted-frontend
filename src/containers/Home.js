@@ -2,13 +2,15 @@ import Hero from "../components/Hero";
 import HomeContent from "../components/HomeContent";
 import { useEffect } from "react";
 
-const Home = ({ isLoading, fetchData, offers, setOffers }) => {
+const Home = ({ isLoading, fetchData, offers, setOffers, errorMessage }) => {
   useEffect(() => {
     fetchData();
   }, []);
 
   return isLoading ? (
-    <p>En cours de chargement </p>
+    <p className="Is-loading">En cours de chargement </p>
+  ) : errorMessage ? (
+    <p className="Error-message">{errorMessage} </p>
   ) : (
     <div className="Home">
       <Hero />
