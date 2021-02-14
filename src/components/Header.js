@@ -50,8 +50,8 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
                 className="Search-bar"
                 id="search-bar"
                 placeholder="Rechercher des articles"
-                value={filters.title}
-                onChange={(event) => {
+                // value={filters.title}
+                onChange={debounce((event) => {
                   const newFilters = { ...filters };
                   newFilters.title = event.target.value;
                   setFilters(newFilters);
@@ -63,7 +63,7 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
                     filters.skip,
                     filters.limit
                   );
-                }}
+                }, 500)}
               />
             </div>
             <div className="Header-filter-block">

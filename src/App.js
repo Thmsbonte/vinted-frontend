@@ -7,6 +7,7 @@ import Home from "./containers/Home";
 import Header from "./components/Header";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import axios from "axios";
+import debounce from "lodash.debounce";
 import {
   faSearch,
   faQuestion,
@@ -54,6 +55,7 @@ const App = () => {
 
   // Get home page data according to header filters
   const fetchData = async (title, priceMin, priceMax, sort, skip, limit) => {
+    console.log("Je fais une requête");
     try {
       let url = "https://lereacteur-vinted-backend.herokuapp.com/offers?";
       if (title) {
