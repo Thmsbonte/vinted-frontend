@@ -24,7 +24,7 @@ const LoginModal = ({ setUser, modal, setModal }) => {
     setErrorMessage("");
     try {
       const response = await axios.post(
-        "https://lereacteur-vinted-backend.herokuapp.com//user/login",
+        "https://lereacteur-vinted-backend.herokuapp.com/user/login",
         credentials
       );
       setUser(response.data.token, response.data.account.username);
