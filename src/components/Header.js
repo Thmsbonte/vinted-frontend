@@ -136,9 +136,23 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
               Se connecter
             </Link>
           )}
-          <Link to="#" className="Button-sell">
-            Vends tes articles
-          </Link>
+          {userInfo.token ? (
+            <Link to="/offer/publish" className="Button-sell">
+              Vends tes articles
+            </Link>
+          ) : (
+            <Link
+              to="#"
+              className="Button-sell"
+              onClick={() => {
+                const newModal = { ...modal };
+                newModal.loginModal = !modal.loginModal;
+                setModal(newModal);
+              }}
+            >
+              Vends tes articles
+            </Link>
+          )}
           <i>
             <FontAwesomeIcon icon="question" />
           </i>

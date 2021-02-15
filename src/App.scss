@@ -473,4 +473,41 @@ body {
       }
     }
   }
+
+  // PAGE PUBLISH
+  .Publish-background {
+    background-color: #ebedee;
+    height: 100vh;
+  }
+
+  .Publish {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    .Publish-container {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      margin-top: 16px;
+      border: solid 1px rgb(212, 208, 208);
+      .Publish-product_details-container {
+        display: flex;
+        label {
+          flex: 1;
+        }
+        input {
+          flex: 1;
+          // border: none;
+        }
+      }
+    }
+  }
+
+  .Upload-modal {
+    background-color: white;
+    margin-top: 10%;
+    padding: 20px;
+    border-radius: 5px;
+    position: fixed;
+  }
 }

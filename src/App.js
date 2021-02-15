@@ -15,9 +15,11 @@ import {
   faTimes,
   faArrowsAltV,
 } from "@fortawesome/free-solid-svg-icons";
+import Publish from "./containers/Publish";
 library.add(faSearch, faQuestion, faHeart, faTimes, faArrowsAltV);
 
 const App = () => {
+  // State declaration
   const [userInfo, setUserInfo] = useState({ token: "", username: "" });
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +33,7 @@ const App = () => {
     limit: "",
   });
 
-  // Creation of user's cookies
+  // Function : creation of user's cookies
   const setUser = (token, username) => {
     if (token) {
       Cookies.set("userToken", token);
@@ -53,7 +55,7 @@ const App = () => {
       });
   }, []);
 
-  // Get home page data according to header filters
+  // Function : get home page data according to header filters
   const fetchData = async (title, priceMin, priceMax, sort, skip, limit) => {
     console.log("Je fais une requête");
     try {
@@ -87,6 +89,7 @@ const App = () => {
     }
   };
 
+  // JSX return
   return (
     <Router>
       <Header
@@ -97,6 +100,9 @@ const App = () => {
         setFilters={setFilters}
       />
       <Switch>
+        <Route path="/offer/publish">
+          <Publish />
+        </Route>
         <Route path="/offer/:id">
           <Offer />
         </Route>
