@@ -123,12 +123,15 @@ const SignupModal = ({ setUser, modal, setModal }) => {
             value={credentials.password}
             onChange={handleInputChange}
           />
-          <input
-            type="file"
-            name="avatar"
-            id="avatar"
-            onChange={handleFileChange}
-          />
+          <div className="Modal-avatar">
+            <label for="avatar">Photo de profil</label>
+            <input
+              type="file"
+              name="avatar"
+              id="avatar"
+              onChange={handleFileChange}
+            />
+          </div>
           <div className="Modal-newsletter">
             <input
               type="checkbox"
