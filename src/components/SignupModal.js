@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignupModal = ({ setUser, modal, setModal }) => {
   const history = useHistory();
+  const [loadingMessage, setLoadingMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [credentials, setCredentials] = useState({
     username: "",
     email: "",
@@ -20,20 +22,50 @@ const SignupModal = ({ setUser, modal, setModal }) => {
     setCredentials(newCredentials);
   };
 
+  const handleFileChange = (event) => {
+    const newCredentials = { ...credentials };
+    newCredentials.avatar = event.target.files[0];
+    setCredentials(newCredentials);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoadingMessage(true);
+    setErrorMessage("");
+
+    const formData = new FormData();
+    formData.append("username", credentials.username);
+    formData.append("email", credentials.email);
+    formData.append("phone", credentials.phone);
+    formData.append("password", credentials.password);
+    formData.append("newsletter", credentials.size);
+    formData.append("avatar", credentials.avatar);
+
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-backend.herokuapp.com/user/signup",
-        credentials
+        formData
       );
       setUser(response.data.token, response.data.account.username);
-      const newModal = { ...modal };
-      newModal.signupModal = !modal.signupModal;
-      setModal(newModal);
-      history.push("/");
+      setLoadingMessage(false);
+      // If the user comes from the "sell article" button, we redirect him to the publish page
+      if (modal.openingPage === "publish") {
+        const newModal = { ...modal };
+        newModal.signupModal = !modal.signupModal;
+        newModal.openingPage = "";
+        setModal(newModal);
+        history.push("/offer/publish");
+
+        // Else redirection to home page
+      } else {
+        const newModal = { ...modal };
+        newModal.signupModal = !modal.signupModal;
+        setModal(newModal);
+        history.push("/");
+      }
     } catch (error) {
+      setLoadingMessage(false);
       console.log(error);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -52,6 +84,12 @@ const SignupModal = ({ setUser, modal, setModal }) => {
           </i>
         </div>
         <h1>Inscription</h1>
+        {loadingMessage && (
+          <p className="Login-error-message">
+            {"Profil en cours de création ..."}
+          </p>
+        )}
+        {errorMessage && <p className="Login-error-message">{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -85,6 +123,12 @@ const SignupModal = ({ setUser, modal, setModal }) => {
             value={credentials.password}
             onChange={handleInputChange}
           />
+          <input
+            type="file"
+            name="avatar"
+            id="avatar"
+            onChange={handleFileChange}
+          />
           <div className="Modal-newsletter">
             <input
               type="checkbox"
@@ -99,7 +143,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
             />
             <p>S'inscrire à notre newsletter</p>
           </div>
-          <button type="submit">Se connecter</button>
+          <button type="submit">S'inscrire</button>
         </form>
         <Link
           onClick={() => {

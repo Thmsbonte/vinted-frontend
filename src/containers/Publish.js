@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import UploadModal from "../components/UploadModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Publish = () => {
   const [newOffer, setNewOffer] = useState({});
@@ -45,11 +46,10 @@ const Publish = () => {
     formData.append("price", newOffer.newOffer_price);
     formData.append("swap", newOffer.newOffer_swap);
 
-    console.log(Cookies.get("userToken"));
     const userToken = Cookies.get("userToken");
     try {
       const response = await axios.post(
-        "http://localhost:3100/offer/publish",
+        "https://lereacteur-vinted-backend.herokuapp.com/offer/publish",
         formData,
         {
           headers: {
@@ -75,12 +75,20 @@ const Publish = () => {
           <h2>Vend ton article</h2>
           <form onSubmit={handleOnSubmit}>
             <div className="Publish-product_picture">
-              <input
-                type="file"
-                name="newOffer_picture"
-                id="newOffer_picture"
-                onChange={handleFileOnChange}
-              />
+              <div className="Publish-product_picture-content">
+                <label for="newOffer_picture">
+                  <i>
+                    <FontAwesomeIcon icon="plus" size="2x" />
+                  </i>
+                  <p>Ajoute une photo</p>{" "}
+                </label>
+                <input
+                  type="file"
+                  name="newOffer_picture"
+                  id="newOffer_picture"
+                  onChange={handleFileOnChange}
+                />
+              </div>
             </div>
             <div className="Publish-product_description Publish-container">
               <div className="Publish-product_details-title Publish-product_details-container">
@@ -89,6 +97,7 @@ const Publish = () => {
                   type="text"
                   name="newOffer_title"
                   id="newOffer_title"
+                  placeholder="ex: Chemise Sézanne verte"
                   onChange={handleTextOnChange}
                 />
               </div>
@@ -98,6 +107,7 @@ const Publish = () => {
                   type="text"
                   name="newOffer_description"
                   id="newOffer_description"
+                  placeholder="ex: Porté quelques fois, taille correctement"
                   onChange={handleTextOnChange}
                 />
               </div>
@@ -109,6 +119,7 @@ const Publish = () => {
                   type="text"
                   name="newOffer_brand"
                   id="newOffer_brand"
+                  placeholder="ex: Zara"
                   onChange={handleTextOnChange}
                 />
               </div>
@@ -118,6 +129,7 @@ const Publish = () => {
                   type="text"
                   name="newOffer_size"
                   id="newOffer_size"
+                  placeholder="ex: L / 40 / 12"
                   onChange={handleTextOnChange}
                 />
               </div>
@@ -127,6 +139,7 @@ const Publish = () => {
                   type="text"
                   name="newOffer_color"
                   id="newOffer_color"
+                  placeholder="ex: Fushia"
                   onChange={handleTextOnChange}
                 />
               </div>
@@ -136,6 +149,7 @@ const Publish = () => {
                   type="text"
                   name="newOffer_condition"
                   id="newOffer_condition"
+                  placeholder="ex: Neuf avec étiquette"
                   onChange={handleTextOnChange}
                 />
               </div>
@@ -145,29 +159,38 @@ const Publish = () => {
                   type="text"
                   name="newOffer_location"
                   id="newOffer_location"
+                  placeholder="ex: Paris"
                   onChange={handleTextOnChange}
                 />
               </div>
             </div>
             <div className="Publish-product_price Publish-container">
               <div className="Publish-product_details-price Publish-product_details-container">
-                <label>Price</label>
+                <label>Prix</label>
                 <input
                   type="text"
                   name="newOffer_price"
                   id="newOffer_price"
+                  placeholder="0,00 €"
                   onChange={handleTextOnChange}
                 />
               </div>
+              <div className="Publish-swap Publish-product_details-container">
+                <label>Échange</label>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="newOffer_swap"
+                    id="newOffer_swap"
+                    onChange={handleCheckboxOnChange}
+                  />{" "}
+                  <label for="newOffer_swap">
+                    Je suis intéressé par les échanges
+                  </label>
+                </div>
+              </div>
             </div>
-            <div className="Publish-swap">
-              <input
-                type="checkbox"
-                name="newOffer_swap"
-                id="newOffer_swap"
-                onChange={handleCheckboxOnChange}
-              />
-            </div>
+
             <div className="Publish-submit">
               <button type="submit">Ajouter</button>
             </div>

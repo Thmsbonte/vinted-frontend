@@ -3,7 +3,7 @@ import logo_header from "../assets/img/vinted.png";
 import { Link, useHistory } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import debounce from "lodash.debounce";
 import LabeledTwoThumbs from "./Slider";
 
@@ -11,6 +11,7 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
   const [modal, setModal] = useState({
     loginModal: false,
     signupModal: false,
+    openingPage: "",
   });
   const history = useHistory();
   return (
@@ -147,6 +148,7 @@ const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
               onClick={() => {
                 const newModal = { ...modal };
                 newModal.loginModal = !modal.loginModal;
+                newModal.openingPage = "publish";
                 setModal(newModal);
               }}
             >

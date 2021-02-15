@@ -7,16 +7,16 @@ import Home from "./containers/Home";
 import Header from "./components/Header";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import axios from "axios";
-import debounce from "lodash.debounce";
 import {
   faSearch,
   faQuestion,
   faHeart,
   faTimes,
   faArrowsAltV,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import Publish from "./containers/Publish";
-library.add(faSearch, faQuestion, faHeart, faTimes, faArrowsAltV);
+library.add(faSearch, faQuestion, faHeart, faTimes, faArrowsAltV, faPlus);
 
 const App = () => {
   // State declaration

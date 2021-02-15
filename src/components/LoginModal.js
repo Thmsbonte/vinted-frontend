@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const LoginModal = ({ setUser, modal, setModal }) => {
   const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loadingMessage, setLoadingMessage] = useState(false);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -18,18 +20,33 @@ const LoginModal = ({ setUser, modal, setModal }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoadingMessage(true);
+    setErrorMessage("");
     try {
       const response = await axios.post(
-        "https://lereacteur-vinted-backend.herokuapp.com/user/login",
+        "https://lereacteur-vinted-backend.herokuapp.com//user/login",
         credentials
       );
       setUser(response.data.token, response.data.account.username);
-      const newModal = { ...modal };
-      newModal.loginModal = !modal.loginModal;
-      setModal(newModal);
-      history.push("/");
+      setLoadingMessage(false);
+      // If the user comes from the "sell article" button, we redirect him to the publish page
+      if (modal.openingPage === "publish") {
+        const newModal = { ...modal };
+        newModal.loginModal = !modal.loginModal;
+        newModal.openingPage = "";
+        setModal(newModal);
+        history.push("/offer/publish");
+        // Else redirection to home page
+      } else {
+        const newModal = { ...modal };
+        newModal.loginModal = !modal.loginModal;
+        setModal(newModal);
+        history.push("/");
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
+      setLoadingMessage(false);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -41,6 +58,7 @@ const LoginModal = ({ setUser, modal, setModal }) => {
             onClick={() => {
               const newModal = { ...modal };
               newModal.loginModal = !modal.loginModal;
+              newModal.openingPage = "";
               setModal(newModal);
             }}
           >
@@ -48,6 +66,10 @@ const LoginModal = ({ setUser, modal, setModal }) => {
           </i>
         </div>
         <h1>Se connecter</h1>
+        {loadingMessage && (
+          <p className="Login-error-message">{"Connexion en cours..."}</p>
+        )}
+        {errorMessage && <p className="Login-error-message">{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
           <input
             type="text"

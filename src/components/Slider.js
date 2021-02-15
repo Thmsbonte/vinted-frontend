@@ -19,6 +19,7 @@ const LabeledTwoThumbs = ({
         justifyContent: "center",
         flexWrap: "wrap",
         width: "100%",
+        zIndex: -1,
       }}
     >
       <Range
