@@ -18,11 +18,14 @@ const CheckoutForm = ({ offer_id, user_id }) => {
       });
       const stripeToken = stripeResponse.token.id;
       try {
-        const response = await axios.post("http://localhost:3100/payment", {
-          stripeToken: stripeToken,
-          offer_id: offer_id,
-          user_id: user_id,
-        });
+        const response = await axios.post(
+          "https://lereacteur-vinted-backend.herokuapp.com/payment",
+          {
+            stripeToken: stripeToken,
+            offer_id: offer_id,
+            user_id: user_id,
+          }
+        );
         response.data.status === "succeeded" && setCompleted(true);
       } catch (error) {
         console.log(error.message);
