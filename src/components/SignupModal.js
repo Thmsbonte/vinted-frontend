@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignupModal = ({ setUser, modal, setModal }) => {
+  // States and useHistory initialization
   const history = useHistory();
   const [loadingMessage, setLoadingMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,21 +17,25 @@ const SignupModal = ({ setUser, modal, setModal }) => {
     avatar: "",
   });
 
+  // Function : save all text inputs changes
   const handleInputChange = (event) => {
     const newCredentials = { ...credentials };
     newCredentials[event.target.id] = event.target.value;
     setCredentials(newCredentials);
   };
 
+  // Function : save user profile picture object
   const handleFileChange = (event) => {
     const newCredentials = { ...credentials };
     newCredentials.avatar = event.target.files[0];
     setCredentials(newCredentials);
   };
+
+  // Function : handle form submit-> send new user sign-up data to the backend
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoadingMessage(true);
-    setErrorMessage("");
+    setErrorMessage(""); // Initialization of an error message state
+    setLoadingMessage(true); // Display of a loading message
 
     const formData = new FormData();
     formData.append("username", credentials.username);
@@ -45,9 +50,10 @@ const SignupModal = ({ setUser, modal, setModal }) => {
         "https://lereacteur-vinted-backend.herokuapp.com/user/signup",
         formData
       );
-      setUser(response.data.token, response.data.account.username);
+      setUser(response.data.token, response.data.account.username); // Save user token and username information
       setLoadingMessage(false);
-      // If the user comes from the "sell article" button, we redirect him to the publish page
+
+      // If user comes from the "sell article" button, we redirect him to the publish page
       if (modal.openingPage === "publish") {
         const newModal = { ...modal };
         newModal.signupModal = !modal.signupModal;
@@ -55,7 +61,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
         setModal(newModal);
         history.push("/offer/publish");
 
-        // Else redirection to home page
+        // Else redirection to the home page
       } else {
         const newModal = { ...modal };
         newModal.signupModal = !modal.signupModal;
@@ -65,7 +71,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
     } catch (error) {
       setLoadingMessage(false);
       console.log(error);
-      setErrorMessage(error.response.data.message);
+      setErrorMessage(error.response.data.message); // Set an "error message" to display to the user
     }
   };
 
@@ -84,6 +90,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
           </i>
         </div>
         <h1>Inscription</h1>
+        {/* Display loading or error messages when needed */}
         {loadingMessage && (
           <p className="Login-error-message">
             {"Profil en cours de création ..."}
@@ -148,6 +155,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
           </div>
           <button type="submit">S'inscrire</button>
         </form>
+        {/* Link to the login page */}
         <Link
           onClick={() => {
             const newModal = { ...modal };

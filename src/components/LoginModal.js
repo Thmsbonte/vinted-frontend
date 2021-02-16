@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const LoginModal = ({ setUser, modal, setModal }) => {
+  // States and useHistory initialization
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
   const [loadingMessage, setLoadingMessage] = useState(false);
@@ -12,22 +13,25 @@ const LoginModal = ({ setUser, modal, setModal }) => {
     password: "",
   });
 
+  // Function : save all text inputs changes
   const handleInputChange = (event) => {
     const newCredentials = { ...credentials };
     newCredentials[event.target.id] = event.target.value;
     setCredentials(newCredentials);
   };
 
+  // Function : handle form submit-> send login request with credential information to the backend
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoadingMessage(true);
-    setErrorMessage("");
+    setErrorMessage(""); // Initialization of an error message state
+    setLoadingMessage(true); // Display of a loading message
+
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-backend.herokuapp.com/user/login",
         credentials
       );
-      setUser(response.data.token, response.data.account.username);
+      setUser(response.data.token, response.data.account.username); // Save user token and username information
       setLoadingMessage(false);
       // If the user comes from the "sell article" button, we redirect him to the publish page
       if (modal.openingPage === "publish") {
@@ -44,9 +48,8 @@ const LoginModal = ({ setUser, modal, setModal }) => {
         history.push("/");
       }
     } catch (error) {
-      console.log(error.response);
       setLoadingMessage(false);
-      setErrorMessage(error.response.data.message);
+      setErrorMessage(error.response.data.message); // Set an "error message" to display to the user
     }
   };
 
@@ -66,6 +69,7 @@ const LoginModal = ({ setUser, modal, setModal }) => {
           </i>
         </div>
         <h1>Se connecter</h1>
+        {/* Display loading or error messages when needed */}
         {loadingMessage && (
           <p className="Login-error-message">{"Connexion en cours..."}</p>
         )}
@@ -89,6 +93,7 @@ const LoginModal = ({ setUser, modal, setModal }) => {
           />
           <button type="submit">Se connecter</button>
         </form>
+        {/* Link to the login page */}
         <Link
           onClick={() => {
             const newModal = { ...modal };

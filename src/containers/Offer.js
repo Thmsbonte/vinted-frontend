@@ -3,29 +3,33 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Offer = () => {
+  // States and params initialization
   const { id } = useParams();
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Function : get offer information
   const fetchData = async () => {
     try {
       const response = await axios.get(
         `https://lereacteur-vinted-backend.herokuapp.com/offer/${id}`
       );
       setOffer(response.data);
-      setIsLoading(false);
+      setIsLoading(false); // Re-initialize loading state when request is done (success)
     } catch (error) {
       console.log(error.message);
-      setErrorMessage(error.message);
-      setIsLoading(false);
+      setErrorMessage(error.message); // Set an "error message" state to display to the user
+      setIsLoading(false); // Re-initialize loading state when request is done (error)
     }
   };
 
+  // Get offer information only once at the opening of the page
   useEffect(() => {
     fetchData();
   }, []);
 
+  // Display loading or error messages when needed
   return isLoading ? (
     <p className="Is-loading">En cours de chargement </p>
   ) : errorMessage ? (

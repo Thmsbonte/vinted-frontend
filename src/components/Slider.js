@@ -2,6 +2,7 @@ import * as React from "react";
 import { Range, getTrackBackground } from "react-range";
 import { useState } from "react";
 
+// Component found here : https://www.npmjs.com/package/react-range
 const LabeledTwoThumbs = ({
   rtl,
   STEP,
@@ -11,7 +12,7 @@ const LabeledTwoThumbs = ({
   setFilters,
   fetchData,
 }) => {
-  const [values, setValues] = useState([0, 2000]);
+  const [values, setValues] = useState([0, 500]);
   return (
     <div
       style={{
@@ -19,7 +20,7 @@ const LabeledTwoThumbs = ({
         justifyContent: "center",
         flexWrap: "wrap",
         width: "100%",
-        zIndex: -1,
+        // zIndex: 0,
       }}
     >
       <Range
@@ -28,6 +29,7 @@ const LabeledTwoThumbs = ({
         min={MIN}
         max={MAX}
         rtl={rtl}
+        // On change, update of filters value and send of a new data offers request
         onChange={(values) => {
           setValues(values);
           const newFilters = { ...filters };

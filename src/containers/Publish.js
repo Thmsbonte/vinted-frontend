@@ -6,33 +6,39 @@ import UploadModal from "../components/UploadModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Publish = () => {
+  // States initialization
   const [newOffer, setNewOffer] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const [loadingModal, setLoadingModal] = useState(false);
 
   const history = useHistory();
 
+  // Function : handle all the text input
   const handleTextOnChange = (event) => {
     const newNewOffer = { ...newOffer };
     newNewOffer[event.target.id] = event.target.value;
     setNewOffer(newNewOffer);
   };
 
+  // Function : handle all the picture upload
   const handleFileOnChange = (event) => {
     const newNewOffer = { ...newOffer };
     newNewOffer.newOffer_picture = event.target.files[0];
     setNewOffer(newNewOffer);
   };
 
+  // Function : handle swap checkbox
   const handleCheckboxOnChange = (event) => {
     const newNewOffer = { ...newOffer };
     newNewOffer[event.target.id] = event.target.value;
     setNewOffer(newNewOffer);
   };
 
+  // Function : handle submit form submit-> send offer data to the backend
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    setLoadingModal(true);
+    setErrorMessage(""); // Initialization of an error message state
+    setLoadingModal(true); // Set "loading" modal state -> display of the modal
 
     const formData = new FormData();
     formData.append("picture", newOffer.newOffer_picture);
@@ -57,18 +63,17 @@ const Publish = () => {
           },
         }
       );
-      console.log("Annonce ajoutée");
-      setLoadingModal(false);
-      history.push(`/offer/${response.data._id}`);
+      setLoadingModal(false); // Re-initialize loading state when request is done (success)
+      history.push(`/offer/${response.data._id}`); // Redirection to the page of the new offer
     } catch (error) {
-      console.log(error.message);
-      setLoadingModal(false);
-      setErrorMessage(error.message);
+      setLoadingModal(false); // Re-initialize loading state when request is done (error)
+      setErrorMessage(error.response.data.message); // Set an "error message" to display to the user
     }
   };
 
   return (
     <>
+      {/*Display loading modal when needed*/}
       {loadingModal && <UploadModal />}
       <div className="Publish-background">
         <div className="Publish container">
@@ -171,7 +176,7 @@ const Publish = () => {
                   type="text"
                   name="newOffer_price"
                   id="newOffer_price"
-                  placeholder="0,00 €"
+                  placeholder="0.00 €"
                   onChange={handleTextOnChange}
                 />
               </div>
@@ -190,7 +195,15 @@ const Publish = () => {
                 </div>
               </div>
             </div>
-
+            {/*Display error message when needed*/}
+            <p
+              className="Publish-error-message"
+              style={
+                errorMessage ? { display: "block" } : { display: "hidden" }
+              }
+            >
+              {errorMessage}
+            </p>
             <div className="Publish-submit">
               <button type="submit">Ajouter</button>
             </div>

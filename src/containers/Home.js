@@ -2,11 +2,8 @@ import Hero from "../components/Hero";
 import HomeContent from "../components/HomeContent";
 import { useEffect } from "react";
 
-const Home = ({ isLoading, fetchData, offers, setOffers, errorMessage }) => {
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const Home = ({ isLoading, offers, setOffers, errorMessage }) => {
+  // Display loading or error message from fetchData() App containers
   return isLoading ? (
     <p className="Is-loading">En cours de chargement </p>
   ) : errorMessage ? (

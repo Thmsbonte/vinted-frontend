@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HomeOffer = ({ offer }) => {
   return (
-    <Link
+    <Link // Link to the offer
       to={`/Offer/${offer._id}`}
       className="Home-offer"
       style={{ textDecoration: "none" }}
