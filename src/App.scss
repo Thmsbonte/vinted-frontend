@@ -735,4 +735,19 @@ body {
       }
     }
   }
+  .Checkout-error {
+    p {
+      margin-top: 50px;
+      color: #666666;
+    }
+  }
+  .Checkout-success {
+    strong {
+      color: rgb(48, 156, 48);
+    }
+    p {
+      margin-top: 50px;
+      color: #666666;
+    }
+  }
 }
