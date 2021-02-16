@@ -7,20 +7,37 @@ import Home from "./containers/Home";
 import Header from "./components/Header";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import axios from "axios";
+// import dotenv from "dotenv";
 import {
+  faSearch,
+  faQuestion,
+  faHeart,
+  faTimes,
+  faTimesCircle,
+  faArrowsAltV,
+  faPlus,
+  faCross,
+} from "@fortawesome/free-solid-svg-icons";
+import Publish from "./containers/Publish";
+import Payment from "./containers/Payment";
+library.add(
   faSearch,
   faQuestion,
   faHeart,
   faTimes,
   faArrowsAltV,
   faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import Publish from "./containers/Publish";
-library.add(faSearch, faQuestion, faHeart, faTimes, faArrowsAltV, faPlus);
+  faCross,
+  faTimesCircle
+);
 
 const App = () => {
   // State declaration
-  const [userInfo, setUserInfo] = useState({ token: "", username: "" });
+  const [userInfo, setUserInfo] = useState({
+    token: "",
+    username: "",
+    user_id: "",
+  });
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -34,11 +51,12 @@ const App = () => {
   });
 
   // Function : creation of user's cookies
-  const setUser = (token, username) => {
+  const setUser = (token, username, user_id) => {
     if (token) {
       Cookies.set("userToken", token);
       Cookies.set("username", username);
-      setUserInfo({ token: token, username: username });
+      Cookies.set("user_id", user_id);
+      setUserInfo({ token: token, username: username, user_id: user_id });
     } else {
       Cookies.remove("userToken");
       Cookies.remove("username");
@@ -99,6 +117,9 @@ const App = () => {
         setFilters={setFilters}
       />
       <Switch>
+        <Route path="/payment">
+          <Payment user_id={userInfo.user_id} />
+        </Route>
         <Route path="/offer/publish">
           <Publish />
         </Route>

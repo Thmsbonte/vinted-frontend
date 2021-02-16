@@ -1,6 +1,5 @@
 import Hero from "../components/Hero";
 import HomeContent from "../components/HomeContent";
-import { useEffect } from "react";
 
 const Home = ({ isLoading, offers, setOffers, errorMessage }) => {
   // Display loading or error message from fetchData() App containers

@@ -7,32 +7,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Publish = () => {
   // States initialization
-  const [newOffer, setNewOffer] = useState({});
+  const [picture, setPicture] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [brand, setBrand] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [condition, setCondition] = useState("");
+  const [location, setLocation] = useState("");
+  const [price, setPrice] = useState("");
+  const [swap, setSwap] = useState("");
+
+  const [preview, setPreview] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loadingModal, setLoadingModal] = useState(false);
 
   const history = useHistory();
-
-  // Function : handle all the text input
-  const handleTextOnChange = (event) => {
-    const newNewOffer = { ...newOffer };
-    newNewOffer[event.target.id] = event.target.value;
-    setNewOffer(newNewOffer);
-  };
-
-  // Function : handle all the picture upload
-  const handleFileOnChange = (event) => {
-    const newNewOffer = { ...newOffer };
-    newNewOffer.newOffer_picture = event.target.files[0];
-    setNewOffer(newNewOffer);
-  };
-
-  // Function : handle swap checkbox
-  const handleCheckboxOnChange = (event) => {
-    const newNewOffer = { ...newOffer };
-    newNewOffer[event.target.id] = event.target.value;
-    setNewOffer(newNewOffer);
-  };
 
   // Function : handle submit form submit-> send offer data to the backend
   const handleOnSubmit = async (event) => {
@@ -41,16 +31,16 @@ const Publish = () => {
     setLoadingModal(true); // Set "loading" modal state -> display of the modal
 
     const formData = new FormData();
-    formData.append("picture", newOffer.newOffer_picture);
-    formData.append("title", newOffer.newOffer_title);
-    formData.append("description", newOffer.newOffer_description);
-    formData.append("brand", newOffer.newOffer_brand);
-    formData.append("size", newOffer.newOffer_size);
-    formData.append("color", newOffer.newOffer_color);
-    formData.append("condition", newOffer.newOffer_condition);
-    formData.append("location", newOffer.newOffer_location);
-    formData.append("price", newOffer.newOffer_price);
-    formData.append("swap", newOffer.newOffer_swap);
+    formData.append("picture", picture);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("brand", brand);
+    formData.append("size", size);
+    formData.append("color", color);
+    formData.append("condition", condition);
+    formData.append("location", location);
+    formData.append("price", price);
+    formData.append("swap", swap);
 
     const userToken = Cookies.get("userToken");
     try {
@@ -81,7 +71,28 @@ const Publish = () => {
           <form onSubmit={handleOnSubmit}>
             <div className="Publish-product_picture">
               <div className="Publish-product_picture-content">
-                <label for="newOffer_picture">
+                {/*Display loaded picture*/}
+                {preview && (
+                  <div className="Picture-uploaded">
+                    {/*On click on the cross, we reinitialize the state and the value of the file input*/}
+                    <i
+                      onClick={() => {
+                        setPicture("");
+                        setPreview("");
+                        document.getElementById(
+                          "newOffer_picture"
+                        ).value = null;
+                      }}
+                    >
+                      <FontAwesomeIcon icon="times-circle" />
+                    </i>
+                    <img src={preview} alt="Upload" />
+                  </div>
+                )}
+                <label
+                  style={preview ? { display: "none" } : { display: "flex" }}
+                  for="newOffer_picture"
+                >
                   <i>
                     <FontAwesomeIcon icon="plus" size="2x" />
                   </i>
@@ -91,7 +102,10 @@ const Publish = () => {
                   type="file"
                   name="newOffer_picture"
                   id="newOffer_picture"
-                  onChange={handleFileOnChange}
+                  onChange={(event) => {
+                    setPicture(event.target.files[0]);
+                    setPreview(URL.createObjectURL(event.target.files[0]));
+                  }}
                 />
               </div>
             </div>
@@ -103,7 +117,7 @@ const Publish = () => {
                   name="newOffer_title"
                   id="newOffer_title"
                   placeholder="ex: Chemise Sézanne verte"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setTitle(event.target.value)}
                 />
               </div>
               <div className="Publish-product_details-description Publish-product_details-container">
@@ -113,7 +127,7 @@ const Publish = () => {
                   name="newOffer_description"
                   id="newOffer_description"
                   placeholder="ex: Porté quelques fois, taille correctement"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setDescription(event.target.value)}
                 />
               </div>
             </div>
@@ -125,7 +139,7 @@ const Publish = () => {
                   name="newOffer_brand"
                   id="newOffer_brand"
                   placeholder="ex: Zara"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setBrand(event.target.value)}
                 />
               </div>
               <div className="Publish-product_details-size Publish-product_details-container">
@@ -135,7 +149,7 @@ const Publish = () => {
                   name="newOffer_size"
                   id="newOffer_size"
                   placeholder="ex: L / 40 / 12"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setSize(event.target.value)}
                 />
               </div>
               <div className="Publish-product_details-color Publish-product_details-container">
@@ -145,7 +159,7 @@ const Publish = () => {
                   name="newOffer_color"
                   id="newOffer_color"
                   placeholder="ex: Fushia"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setColor(event.target.value)}
                 />
               </div>
               <div className="Publish-product_details-condition Publish-product_details-container">
@@ -155,7 +169,7 @@ const Publish = () => {
                   name="newOffer_condition"
                   id="newOffer_condition"
                   placeholder="ex: Neuf avec étiquette"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setCondition(event.target.value)}
                 />
               </div>
               <div className="Publish-product_details-location Publish-product_details-container">
@@ -165,7 +179,7 @@ const Publish = () => {
                   name="newOffer_location"
                   id="newOffer_location"
                   placeholder="ex: Paris"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setLocation(event.target.value)}
                 />
               </div>
             </div>
@@ -177,7 +191,7 @@ const Publish = () => {
                   name="newOffer_price"
                   id="newOffer_price"
                   placeholder="0.00 €"
-                  onChange={handleTextOnChange}
+                  onChange={(event) => setPrice(event.target.value)}
                 />
               </div>
               <div className="Publish-swap Publish-product_details-container">
@@ -187,7 +201,7 @@ const Publish = () => {
                     type="checkbox"
                     name="newOffer_swap"
                     id="newOffer_swap"
-                    onChange={handleCheckboxOnChange}
+                    onChange={(event) => setSwap(event.target.value)}
                   />{" "}
                   <label for="newOffer_swap">
                     Je suis intéressé par les échanges

@@ -483,7 +483,7 @@ body {
         display: flex;
         flex: 1;
         align-items: flex-end;
-        button {
+        a {
           background-color: $mainColor;
           border: solid 1px $mainColor;
           color: white;
@@ -496,6 +496,7 @@ body {
           border-radius: 5px;
           font-weight: 100;
           font-size: 16px;
+          text-decoration: none;
         }
       }
     }
@@ -530,6 +531,22 @@ body {
           height: 100%;
           border: dashed 1px rgb(218, 211, 211);
           border-radius: 3px;
+          .Picture-uploaded {
+            height: 95%;
+            position: relative;
+            i {
+              right: 5px;
+              top: 5px;
+              position: absolute;
+              z-index: 10;
+              color: white;
+              cursor: pointer;
+            }
+            img {
+              height: 100%;
+              border-radius: 5px;
+            }
+          }
           label {
             background-color: white;
             border: solid 1px $mainColor;
@@ -636,5 +653,86 @@ body {
     padding: 20px;
     border-radius: 5px;
     position: fixed;
+  }
+
+  // PAYMENT CONTAINER
+  .Payment {
+    background-color: #ebedee;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  // CHECKOUT COMPONENT
+  .Checkout-form {
+    background-color: white;
+    width: 600px;
+    margin-top: 40px;
+    .Checkout-order-summary {
+      display: flex;
+      flex-direction: column;
+      border-bottom: solid 1px rgb(211, 200, 200);
+      padding-bottom: 40px;
+      h5 {
+        margin-top: 15px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        font-weight: 100;
+      }
+      .Checkout-order-summary-detail {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        font-weight: 300;
+        font-size: 18px;
+      }
+    }
+    .Checkout-order-final {
+      border-bottom: solid 1px rgb(211, 200, 200);
+      .Checkout-order-summary-total {
+        margin-right: 20px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        span {
+          font-weight: 700;
+        }
+        p {
+          margin-left: 20px;
+          margin-right: 20px;
+          margin-bottom: 20px;
+          font-weight: 700;
+        }
+      }
+      p {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        line-height: 20px;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+      .Card-element {
+        border: solid 1px rgb(224, 221, 221);
+        padding: 10px;
+        border-radius: 5px;
+      }
+      button {
+        margin-top: 15px;
+        background-color: #2dbb6a;
+        border: none;
+        color: white;
+        height: 35px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
   }
 }

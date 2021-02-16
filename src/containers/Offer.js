@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Offer = () => {
   // States and params initialization
@@ -59,7 +60,20 @@ const Offer = () => {
               <p>{offer.owner.account.username}</p>
             </div>
             <div className="Offer-buy-button">
-              <button>Acheter</button>
+              {Cookies.get("userToken") ? (
+                <Link
+                  to={{
+                    pathname: "/payment",
+                    state: {
+                      offer_id: id,
+                    },
+                  }}
+                >
+                  Acheter
+                </Link>
+              ) : (
+                <a href="#">Merci de vous connecter pour acheter</a>
+              )}
             </div>
           </div>
         </div>
