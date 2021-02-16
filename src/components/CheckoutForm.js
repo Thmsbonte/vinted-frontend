@@ -72,7 +72,8 @@ const CheckoutForm = ({ offer_id, user_id, offer_price }) => {
           </div>
           <p>
             Il ne vous reste plus qu'un étape pour vous offrir null. Vous allez
-            payer 0 € (frais de protection et frais de port inclus).
+            payer <strong>{totalPrice} €</strong> (frais de protection et frais
+            de port inclus).
           </p>
         </div>
         <form onSubmit={handleOnSubmit}>
