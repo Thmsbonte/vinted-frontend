@@ -11,10 +11,15 @@ const stripePromise = loadStripe(
 const Payment = ({ user_id }) => {
   const location = useLocation();
   const offer_id = location.state.offer_id;
+  const offer_price = location.state.offer_price;
   return (
     <div className="Payment">
       <Elements stripe={stripePromise}>
-        <CheckoutForm offer_id={offer_id} user_id={user_id} />
+        <CheckoutForm
+          offer_id={offer_id}
+          user_id={user_id}
+          offer_price={offer_price}
+        />
       </Elements>
     </div>
   );

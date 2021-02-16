@@ -66,6 +66,7 @@ const Offer = () => {
                     pathname: "/payment",
                     state: {
                       offer_id: id,
+                      offer_price: offer.product_price,
                     },
                   }}
                 >
