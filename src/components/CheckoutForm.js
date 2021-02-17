@@ -3,14 +3,16 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 import CheckoutModal from "./CheckoutModal";
 import { useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const CheckoutForm = ({ offer_id, user_id, offer }) => {
+const CheckoutForm = ({ offer_id, offer }) => {
   const [completed, setCompleted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loadingModal, setLoadingModal] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const history = useHistory();
+  const user_id = Cookies.get("user_id");
   const protectionFees = 0.5;
   const deliveryFees = 4.5;
   const totalPrice =

@@ -8,14 +8,14 @@ const stripePromise = loadStripe(
   "pk_test_51ILU3GD8pKdAtwrKx8M5VPy6jeJ40IToklFd6C7T3nRdFDDeFvdk34Mqi70WTXmBVz9nMBHdTZ9cora5v3j2HEn2000zwgBuIr"
 );
 
-const Payment = ({ user_id }) => {
+const Payment = () => {
   const location = useLocation();
   const offer_id = location.state.offer_id;
   const offer = location.state.offer;
   return (
     <div className="Payment">
       <Elements stripe={stripePromise}>
-        <CheckoutForm offer_id={offer_id} user_id={user_id} offer={offer} />
+        <CheckoutForm offer_id={offer_id} offer={offer} />
       </Elements>
     </div>
   );

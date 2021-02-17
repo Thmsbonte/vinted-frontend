@@ -118,7 +118,7 @@ const App = () => {
       />
       <Switch>
         <Route path="/payment">
-          <Payment user_id={userInfo.user_id} />
+          <Payment />
         </Route>
         <Route path="/offer/publish">
           <Publish />
