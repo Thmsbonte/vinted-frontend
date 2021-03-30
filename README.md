@@ -19,7 +19,7 @@ Part-clone of Vinted website
 ### Screenshots
 
 <p align="center">
-	<img margin-right="20" width="400" alt="home-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/home-page.png"><img width="400" alt="publish-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/publish.png">
+	<img margin="20" width="400" alt="home-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/home-page.png"><img width="400" alt="publish-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/publish.png">
 	</p>
 	
   <p align="center">
