@@ -124,6 +124,7 @@ body {
           .Filter-price {
             display: flex;
             width: 300px;
+            // z-index: 0;
           }
         }
       }
@@ -208,6 +209,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    z-index: 2;
     .Modal-content {
       background-color: white;
       width: 350px;
@@ -483,6 +485,7 @@ body {
         display: flex;
         flex: 1;
         align-items: flex-end;
+        p,
         a {
           background-color: $mainColor;
           border: solid 1px $mainColor;
@@ -497,6 +500,7 @@ body {
           font-weight: 100;
           font-size: 16px;
           text-decoration: none;
+          cursor: pointer;
         }
       }
     }

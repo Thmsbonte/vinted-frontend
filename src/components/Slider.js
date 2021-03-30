@@ -2,7 +2,7 @@ import * as React from "react";
 import { Range, getTrackBackground } from "react-range";
 import { useState } from "react";
 
-// Component found here : https://www.npmjs.com/package/react-range
+// Component source: https://www.npmjs.com/package/react-range
 const LabeledTwoThumbs = ({
   rtl,
   STEP,

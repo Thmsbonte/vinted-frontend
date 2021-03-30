@@ -10,25 +10,25 @@ const Offer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Function : get offer information
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `https://lereacteur-vinted-backend.herokuapp.com/offer/${id}`
-      );
-      setOffer(response.data);
-      setIsLoading(false); // Re-initialize loading state when request is done (success)
-    } catch (error) {
-      console.log(error.message);
-      setErrorMessage(error.message); // Set an "error message" state to display to the user
-      setIsLoading(false); // Re-initialize loading state when request is done (error)
-    }
-  };
-
   // Get offer information only once at the opening of the page
   useEffect(() => {
+    // Function : get offer information
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://lereacteur-vinted-backend.herokuapp.com/offer/${id}`
+        );
+        setOffer(response.data);
+        setIsLoading(false); // Re-initialize loading state when request is done (success)
+      } catch (error) {
+        console.log(error.message);
+        setErrorMessage(error.message); // Set an "error message" state to display to the user
+        setIsLoading(false); // Re-initialize loading state when request is done (error)
+      }
+    };
+
     fetchData();
-  }, []);
+  }, [id]);
 
   // Display loading or error messages when needed
   return isLoading ? (
@@ -73,7 +73,7 @@ const Offer = () => {
                   Acheter
                 </Link>
               ) : (
-                <a href="#">Merci de vous connecter pour acheter</a>
+                <p>Merci de vous connecter pour acheter</p>
               )}
             </div>
           </div>
