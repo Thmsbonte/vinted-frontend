@@ -24,7 +24,7 @@ Part-clone of Vinted website
 	
 	
   <p align="center">
-  <img width="400" alt="article-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/article.png"><img width="400" alt="payment-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/payment.png">
+  <img width="400" alt="article-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/article.png">     <img width="400" alt="payment-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/payment.png">
 </p>
 
 ## Stack
