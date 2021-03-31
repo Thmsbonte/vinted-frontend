@@ -12,6 +12,9 @@ const LoginModal = ({ setUser, modal, setModal }) => {
     email: "",
     password: "",
   });
+  // Alow to check if a string is a mongoDB valid id
+  const mongoose = require("mongoose");
+  const ObjectId = mongoose.Types.ObjectId;
 
   // Function : save all text inputs changes
   const handleInputChange = (event) => {
@@ -44,8 +47,15 @@ const LoginModal = ({ setUser, modal, setModal }) => {
         newModal.openingPage = "";
         setModal(newModal);
         history.push("/offer/publish");
-        // Else redirection to home page
+        // If user comes from an offer page, redirection to the offer page
+      } else if (ObjectId.isValid(modal.openingPage)) {
+        const newModal = { ...modal };
+        newModal.loginModal = !modal.loginModal;
+        newModal.openingPage = "";
+        setModal(newModal);
+        history.push(`/offer/${modal.openingPage}`);
       } else {
+        // Else redirection to home page
         const newModal = { ...modal };
         newModal.loginModal = !modal.loginModal;
         setModal(newModal);

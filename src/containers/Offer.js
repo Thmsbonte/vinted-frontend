@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-const Offer = () => {
+const Offer = ({ modal, setModal }) => {
   // States and params initialization
   const { id } = useParams();
   const [offer, setOffer] = useState();
@@ -73,7 +73,16 @@ const Offer = () => {
                   Acheter
                 </Link>
               ) : (
-                <p>Merci de vous connecter pour acheter</p>
+                <p
+                  onClick={() => {
+                    const newModal = { ...modal };
+                    newModal.loginModal = !modal.loginModal;
+                    newModal.openingPage = id;
+                    setModal(newModal);
+                  }}
+                >
+                  Merci de vous connecter pour acheter
+                </p>
               )}
             </div>
           </div>

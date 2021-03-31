@@ -40,7 +40,10 @@ const CheckoutForm = ({ offer_id, offer }) => {
         response.data.status === "succeeded" && setCompleted(true);
         setLoadingModal(false);
         // Automatic redirection to home page
-        setTimeout(() => history.push("/"), 3000);
+        setTimeout(() => {
+          history.push("/reload");
+          window.location.reload(false);
+        }, 3000);
       } catch (error) {
         console.log(error.message);
         setErrorMessage(error.message);

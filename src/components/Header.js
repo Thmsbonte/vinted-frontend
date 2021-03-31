@@ -7,13 +7,16 @@ import { useState } from "react";
 import debounce from "lodash.debounce";
 import LabeledTwoThumbs from "./Slider";
 
-const Header = ({ userInfo, setUser, fetchData, filters, setFilters }) => {
-  // States and useHistory initialization
-  const [modal, setModal] = useState({
-    loginModal: false,
-    signupModal: false,
-    openingPage: "",
-  });
+const Header = ({
+  userInfo,
+  setUser,
+  fetchData,
+  filters,
+  setFilters,
+  modal,
+  setModal,
+}) => {
+  // UseHistory initialization
   const history = useHistory();
 
   return (

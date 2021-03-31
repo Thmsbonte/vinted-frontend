@@ -1,5 +1,10 @@
 import "./App.scss";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Offer from "./containers/Offer";
@@ -48,6 +53,11 @@ const App = () => {
     sort: "",
     skip: "",
     limit: "",
+  });
+  const [modal, setModal] = useState({
+    loginModal: false,
+    signupModal: false,
+    openingPage: "",
   });
 
   // Function : creation of user's cookies
@@ -115,6 +125,8 @@ const App = () => {
         fetchData={fetchData}
         filters={filters}
         setFilters={setFilters}
+        modal={modal}
+        setModal={setModal}
       />
       <Switch>
         <Route path="/payment">
@@ -124,8 +136,9 @@ const App = () => {
           <Publish />
         </Route>
         <Route path="/offer/:id">
-          <Offer />
+          <Offer modal={modal} setModal={setModal} />
         </Route>
+        <Redirect from="/reload" to="/" />
         <Route path="/">
           <Home
             isLoading={isLoading}
