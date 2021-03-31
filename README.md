@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-	<img src="https://github.com/Thmsbonte/Achylles/blob/main/preview/achylle-gify.gif" width="300">
+	<img src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/vinted-gif-preview.gif">
 </p>
 
 ## Overview
