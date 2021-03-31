@@ -70,5 +70,3 @@ yarn start
 - [Stripe](https://stripe.com) for online payment
 - [React range](https://www.npmjs.com/package/react-range) for slider filter
 
-<!-- See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project. -->
-
