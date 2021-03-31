@@ -8,7 +8,11 @@
 
 ## Overview
 
-Part-clone of Vinted website
+Part-clone of Vinted website realized while learning React. ⚠️ The website is not complete, in only contains the following pages :
+- Home page
+- Article details
+- Payment
+- Publish a new article
 
 ### Main features
 - **Login** and **Signup**
@@ -26,6 +30,32 @@ Part-clone of Vinted website
   <p align="center">
   <img width="400" alt="article-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/article.png">     <img width="400" alt="payment-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/payment.png">
 </p>
+
+## Installation and usage
+
+Be sure, you have installed all dependencies React on your computer : [Getting Started with React](https://fr.reactjs.org/docs/getting-started.html).
+
+### Running the project
+
+Clone this repository :
+
+```
+git clone https://github.com/Thmsbonte/vinted-frontend.git
+cd vinted-frontend
+```
+
+Install packages :
+
+```
+yarn
+```
+
+When installation is complete, run it :
+
+```
+yarn start
+```
+
 
 ## Stack
 
