@@ -8,7 +8,8 @@
 
 ## Overview
 
-Part-clone of Vinted website realized while learning React. ⚠️ The website is not complete, in only contains the following pages :
+Part-clone of Vinted website realized while learning React.
+⚠️ The website is not complete, in only contains the following pages :
 - Home page
 - Article details
 - Payment
@@ -32,8 +33,6 @@ Part-clone of Vinted website realized while learning React. ⚠️ The website i
 </p>
 
 ## Installation and usage
-
-Be sure, you have installed all dependencies React on your computer : [Getting Started with React](https://fr.reactjs.org/docs/getting-started.html).
 
 ### Running the project
 
