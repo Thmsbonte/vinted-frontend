@@ -57,6 +57,10 @@ yarn start
 
 
 ## Stack
+### High-Level architecture
+![Capture d’écran 2021-04-02 à 15 10 17](https://user-images.githubusercontent.com/5527656/113418325-8be7d980-93c5-11eb-908b-e513d71084bf.png)
+
+Github of the backend : https://github.com/Thmsbonte/Vinted-backend
 
 ### Built with
 
