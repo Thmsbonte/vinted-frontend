@@ -8,7 +8,7 @@
 
 ## Overview
 
-Part-clone of Vinted website realized while learning React.
+Partial clone of Vinted website realized while learning React.
 ⚠️ The website is not complete, in only contains the following pages : ⚠️ 
 - Home page
 - Article details
