@@ -1,0 +1,14 @@
+@import "../Variables.scss";
+
+.Footer {
+  border-top: 1px solid rgb(231, 231, 231);
+  margin-top: 10px;
+  > p {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    strong {
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@import "../Variables.scss";
+
+.Header-search-bar {
+  background-color: #f5f6f7;
+  height: 40px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  .Select-header {
+    border-right: solid 1px #e3e4e5;
+    display: flex;
+    background-color: #f5f6f7;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-right: 10px;
+    height: 100%;
+    select {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      margin: 0 10px;
+      color: #babcbe;
+    }
+  }
+  .Select-header:hover {
+    background-color: #e7e9eb;
+  }
+  i {
+    color: #babcbe;
+    margin-right: 10px;
+  }
+  input {
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    color: #7a7a7a;
+    font-size: 14px;
+  }
+}

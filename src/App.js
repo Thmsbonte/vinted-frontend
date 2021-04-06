@@ -22,6 +22,7 @@ import {
   faArrowsAltV,
   faPlus,
   faCross,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import Publish from "./containers/Publish";
 import Payment from "./containers/Payment";
@@ -33,7 +34,8 @@ library.add(
   faArrowsAltV,
   faPlus,
   faCross,
-  faTimesCircle
+  faTimesCircle,
+  faBars
 );
 
 const App = () => {
@@ -59,6 +61,7 @@ const App = () => {
     signupModal: false,
     openingPage: "",
   });
+  const [responsiveMenu, setResponsiveMenu] = useState(false);
 
   // Function : creation of user's cookies
   const setUser = (token, username, user_id) => {
@@ -127,6 +130,8 @@ const App = () => {
         setFilters={setFilters}
         modal={modal}
         setModal={setModal}
+        responsiveMenu={responsiveMenu}
+        setResponsiveMenu={setResponsiveMenu}
       />
       <Switch>
         <Route path="/payment">
@@ -146,6 +151,11 @@ const App = () => {
             offers={offers}
             setOffers={setOffers}
             errorMessage={errorMessage}
+            responsiveMenu={responsiveMenu}
+            userInfo={userInfo}
+            setUser={setUser}
+            modal={modal}
+            setModal={setModal}
           />
         </Route>
       </Switch>

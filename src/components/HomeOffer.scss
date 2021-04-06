@@ -1,0 +1,93 @@
+@import "../Variables.scss";
+
+.Home-offer {
+  margin-right: 15px;
+  &:nth-child(5n) {
+    margin-right: 0px;
+  }
+  margin-top: 24px;
+  width: calc(100% / 5 - 15 / 5 * 4px);
+  @media (max-width: $windowsWidth) {
+    width: calc(100% / 4 - 15 / 4 * 3px);
+    &:nth-child(5n) {
+      margin-right: 15px;
+    }
+    &:nth-child(4n) {
+      margin-right: 0px;
+    }
+  }
+  @media (max-width: $largeWindow) {
+    width: calc(100% / 3 - 15 / 3 * 2px);
+    &:nth-child(4n) {
+      margin-right: 15px;
+    }
+    &:nth-child(3n) {
+      margin-right: 0px;
+    }
+  }
+  @media (max-width: $mediumWindow) {
+    width: calc(100% / 2 - 15px / 2);
+    &:nth-child(3n) {
+      margin-right: 15px;
+    }
+    &:nth-child(2n) {
+      margin-right: 0px;
+    }
+  }
+  @media (max-width: $smallWindow) {
+    width: calc(100% - 15px);
+    &:nth-child(2n) {
+      margin-right: 15px;
+    }
+    margin-right: 0px;
+  }
+  display: flex;
+  flex-direction: column;
+  .Home-offer-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    img {
+      height: 30px;
+      border-radius: 50%;
+    }
+    p {
+      color: #999999;
+      margin-left: 10px;
+      font-size: 12px;
+      font-weight: 100;
+    }
+  }
+  .Home-offer-picture {
+    height: 355px;
+    width: 100%;
+    margin-bottom: 10px;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .Home-offer-info {
+    display: flex;
+    justify-content: space-between;
+    .Home-offer-info-left {
+      p {
+        color: #999999;
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 18px;
+      }
+      span {
+        font-weight: 400;
+        color: black;
+        font-size: 16px;
+      }
+    }
+    .Home-offer-info-right {
+      .Icon-heart {
+        color: $mainColor;
+      }
+    }
+  }
+}

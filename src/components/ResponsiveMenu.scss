@@ -1,0 +1,45 @@
+@import "../Variables.scss";
+
+.Responsive-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  > a {
+    width: 100%;
+    border-radius: 5px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 40px;
+  }
+  .Button-login {
+    background-color: white;
+    border: solid 1px $mainColor;
+    color: $mainColor;
+  }
+  .Button-logout {
+    background-color: white;
+    border: solid 1px $mainColor;
+    color: $mainColor;
+    border-radius: 5px;
+    text-decoration: none;
+    strong {
+      font-weight: 700;
+    }
+    span {
+      cursor: pointer;
+      font-size: 12px;
+    }
+    span:hover {
+      text-decoration: underline;
+    }
+  }
+  .Button-sell {
+    background-color: $mainColor;
+    border: solid 1px $mainColor;
+    color: white;
+  }
+}

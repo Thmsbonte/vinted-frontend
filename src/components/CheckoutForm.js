@@ -1,3 +1,4 @@
+import "./CheckoutForm.scss";
 import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";

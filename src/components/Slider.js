@@ -1,3 +1,4 @@
+import "./Slider.scss";
 import * as React from "react";
 import { Range, getTrackBackground } from "react-range";
 import { useState } from "react";

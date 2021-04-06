@@ -1,3 +1,5 @@
+import "./CheckoutModal.scss";
+
 const CheckoutModal = () => {
   return (
     <div className="Modal">

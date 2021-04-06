@@ -1,3 +1,5 @@
+import "./UploadModal.scss";
+
 const UploadModal = () => {
   return (
     <div className="Modal">
