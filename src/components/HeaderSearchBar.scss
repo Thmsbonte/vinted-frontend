@@ -16,16 +16,15 @@
     border-bottom-left-radius: 5px;
     margin-right: 10px;
     height: 100%;
-    select {
+    > p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border: none;
       background-color: transparent;
-      cursor: pointer;
       margin: 0 10px;
       color: #babcbe;
     }
-  }
-  .Select-header:hover {
-    background-color: #e7e9eb;
   }
   i {
     color: #babcbe;

@@ -24,7 +24,7 @@ const Home = ({
   ) : !responsiveMenu ? (
     <>
       <div className="Home">
-        <Hero />
+        <Hero userInfo={userInfo} modal={modal} setModal={setModal} />
         <HomeContent offers={offers} setOffers={setOffers} />
       </div>
       <Footer />

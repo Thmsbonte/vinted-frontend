@@ -149,9 +149,6 @@ const Header = ({
             </i>
             <select name="language" id="language" placeholder="FR">
               <option value="">FR</option>
-              <option value="ENG">ENG</option>
-              <option value="ESP">ESP</option>
-              <option value="DUT">DUT</option>
             </select>
           </div>
           <div

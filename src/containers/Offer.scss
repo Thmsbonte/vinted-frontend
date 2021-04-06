@@ -2,12 +2,13 @@
 
 .Offer-background {
   background-color: #ebedee;
-  min-height: 100vh;
+  min-height: calc(100vh - 126px);
 }
 .Offer {
   display: flex;
   justify-content: space-between;
   padding-top: 30px;
+  padding-bottom: 30px;
   @media (max-width: $largeWindow) {
     flex-direction: column;
     align-items: center;
