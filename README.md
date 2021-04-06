@@ -3,12 +3,17 @@
 </h1>
 
 <p align="center">
-	<img src="https://github.com/Thmsbonte/Achylles/blob/main/preview/achylle-gify.gif" width="300">
+	<img src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/vinted-gif-preview.gif">
 </p>
 
 ## Overview
 
-Part-clone of Vinted website
+Partial clone of Vinted website realized while learning React.
+⚠️ The website is not complete, in only contains the following pages : ⚠️ 
+- Home page
+- Article details
+- Payment
+- Publish a new article
 
 ### Main features
 - **Login** and **Signup**
@@ -27,7 +32,35 @@ Part-clone of Vinted website
   <img width="400" alt="article-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/article.png">     <img width="400" alt="payment-page" src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/payment.png">
 </p>
 
+## Installation and usage
+
+### Running the project
+
+Clone this repository :
+
+```
+git clone https://github.com/Thmsbonte/vinted-frontend.git
+cd vinted-frontend
+```
+
+Install packages :
+
+```
+yarn
+```
+
+When installation is complete, run it :
+
+```
+yarn start
+```
+
+
 ## Stack
+### High-Level architecture
+![Capture d’écran 2021-04-02 à 15 10 17](https://user-images.githubusercontent.com/5527656/113418325-8be7d980-93c5-11eb-908b-e513d71084bf.png)
+
+Github of the backend : https://github.com/Thmsbonte/Vinted-backend
 
 ### Built with
 
@@ -40,6 +73,4 @@ Part-clone of Vinted website
 - [Cloudinary](https://cloudinary.com/) for image storage
 - [Stripe](https://stripe.com) for online payment
 - [React range](https://www.npmjs.com/package/react-range) for slider filter
-
-<!-- See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project. -->
 
