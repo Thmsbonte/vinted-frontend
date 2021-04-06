@@ -5,8 +5,17 @@ import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import UploadModal from "../components/UploadModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ResponsiveMenu from "../components/ResponsiveMenu";
+import Footer from "../components/Footer";
 
-const Publish = () => {
+const Publish = ({
+  modal,
+  setModal,
+  userInfo,
+  setUser,
+  setResponsiveMenu,
+  responsiveMenu,
+}) => {
   // States initialization
   const [picture, setPicture] = useState("");
   const [title, setTitle] = useState("");
@@ -66,165 +75,176 @@ const Publish = () => {
     <>
       {/*Display loading modal when needed*/}
       {loadingModal && <UploadModal />}
-      <div className="Publish-background">
-        <div className="Publish container">
-          <h2>Vend ton article</h2>
-          <form onSubmit={handleOnSubmit}>
-            <div className="Publish-product_picture">
-              <div className="Publish-product_picture-content">
-                {/*Display loaded picture*/}
-                {preview && (
-                  <div className="Picture-uploaded">
-                    {/*On click on the cross, we reinitialize the state and the value of the file input*/}
-                    <i
-                      onClick={() => {
-                        setPicture("");
-                        setPreview("");
-                        document.getElementById(
-                          "newOffer_picture"
-                        ).value = null;
-                      }}
-                    >
-                      <FontAwesomeIcon icon="times-circle" />
+      {!responsiveMenu ? (
+        <div className="Publish-background">
+          <div className="Publish container">
+            <h2>Vend ton article</h2>
+            <form onSubmit={handleOnSubmit}>
+              <div className="Publish-product_picture">
+                <div className="Publish-product_picture-content">
+                  {/*Display loaded picture*/}
+                  {preview && (
+                    <div className="Picture-uploaded">
+                      {/*On click on the cross, we reinitialize the state and the value of the file input*/}
+                      <i
+                        onClick={() => {
+                          setPicture("");
+                          setPreview("");
+                          document.getElementById(
+                            "newOffer_picture"
+                          ).value = null;
+                        }}
+                      >
+                        <FontAwesomeIcon icon="times-circle" />
+                      </i>
+                      <img src={preview} alt="Upload" />
+                    </div>
+                  )}
+                  <label
+                    style={preview ? { display: "none" } : { display: "flex" }}
+                    for="newOffer_picture"
+                  >
+                    <i>
+                      <FontAwesomeIcon icon="plus" size="2x" />
                     </i>
-                    <img src={preview} alt="Upload" />
-                  </div>
-                )}
-                <label
-                  style={preview ? { display: "none" } : { display: "flex" }}
-                  for="newOffer_picture"
-                >
-                  <i>
-                    <FontAwesomeIcon icon="plus" size="2x" />
-                  </i>
-                  <p>Ajoute une photo</p>{" "}
-                </label>
-                <input
-                  type="file"
-                  name="newOffer_picture"
-                  id="newOffer_picture"
-                  onChange={(event) => {
-                    setPicture(event.target.files[0]);
-                    setPreview(URL.createObjectURL(event.target.files[0]));
-                  }}
-                />
-              </div>
-            </div>
-            <div className="Publish-product_description Publish-container">
-              <div className="Publish-product_details-title Publish-product_details-container">
-                <label>Title</label>
-                <input
-                  type="text"
-                  name="newOffer_title"
-                  id="newOffer_title"
-                  placeholder="ex: Chemise Sézanne verte"
-                  onChange={(event) => setTitle(event.target.value)}
-                />
-              </div>
-              <div className="Publish-product_details-description Publish-product_details-container">
-                <label>Décris ton article</label>
-                <input
-                  type="text"
-                  name="newOffer_description"
-                  id="newOffer_description"
-                  placeholder="ex: Porté quelques fois, taille correctement"
-                  onChange={(event) => setDescription(event.target.value)}
-                />
-              </div>
-            </div>
-            <div className="Publish-product_details Publish-container">
-              <div className="Publish-product_details-brand Publish-product_details-container">
-                <label>Marque</label>
-                <input
-                  type="text"
-                  name="newOffer_brand"
-                  id="newOffer_brand"
-                  placeholder="ex: Zara"
-                  onChange={(event) => setBrand(event.target.value)}
-                />
-              </div>
-              <div className="Publish-product_details-size Publish-product_details-container">
-                <label>Taille</label>
-                <input
-                  type="text"
-                  name="newOffer_size"
-                  id="newOffer_size"
-                  placeholder="ex: L / 40 / 12"
-                  onChange={(event) => setSize(event.target.value)}
-                />
-              </div>
-              <div className="Publish-product_details-color Publish-product_details-container">
-                <label>Couleur</label>
-                <input
-                  type="text"
-                  name="newOffer_color"
-                  id="newOffer_color"
-                  placeholder="ex: Fushia"
-                  onChange={(event) => setColor(event.target.value)}
-                />
-              </div>
-              <div className="Publish-product_details-condition Publish-product_details-container">
-                <label>Etat</label>
-                <input
-                  type="text"
-                  name="newOffer_condition"
-                  id="newOffer_condition"
-                  placeholder="ex: Neuf avec étiquette"
-                  onChange={(event) => setCondition(event.target.value)}
-                />
-              </div>
-              <div className="Publish-product_details-location Publish-product_details-container">
-                <label>Lieu</label>
-                <input
-                  type="text"
-                  name="newOffer_location"
-                  id="newOffer_location"
-                  placeholder="ex: Paris"
-                  onChange={(event) => setLocation(event.target.value)}
-                />
-              </div>
-            </div>
-            <div className="Publish-product_price Publish-container">
-              <div className="Publish-product_details-price Publish-product_details-container">
-                <label>Prix</label>
-                <input
-                  type="text"
-                  name="newOffer_price"
-                  id="newOffer_price"
-                  placeholder="0.00 €"
-                  onChange={(event) => setPrice(event.target.value)}
-                />
-              </div>
-              <div className="Publish-swap Publish-product_details-container">
-                <label>Échange</label>
-                <div>
-                  <input
-                    type="checkbox"
-                    name="newOffer_swap"
-                    id="newOffer_swap"
-                    onChange={(event) => setSwap(event.target.value)}
-                  />{" "}
-                  <label for="newOffer_swap">
-                    Je suis intéressé par les échanges
+                    <p>Ajoute une photo</p>{" "}
                   </label>
+                  <input
+                    type="file"
+                    name="newOffer_picture"
+                    id="newOffer_picture"
+                    onChange={(event) => {
+                      setPicture(event.target.files[0]);
+                      setPreview(URL.createObjectURL(event.target.files[0]));
+                    }}
+                  />
                 </div>
               </div>
-            </div>
-            {/*Display error message when needed*/}
-            <p
-              className="Publish-error-message"
-              style={
-                errorMessage ? { display: "block" } : { display: "hidden" }
-              }
-            >
-              {errorMessage}
-            </p>
-            <div className="Publish-submit">
-              <button type="submit">Ajouter</button>
-            </div>
-          </form>
+              <div className="Publish-product_description Publish-container">
+                <div className="Publish-product_details-title Publish-product_details-container">
+                  <label>Title</label>
+                  <input
+                    type="text"
+                    name="newOffer_title"
+                    id="newOffer_title"
+                    placeholder="ex: Chemise Sézanne verte"
+                    onChange={(event) => setTitle(event.target.value)}
+                  />
+                </div>
+                <div className="Publish-product_details-description Publish-product_details-container">
+                  <label>Décris ton article</label>
+                  <input
+                    type="text"
+                    name="newOffer_description"
+                    id="newOffer_description"
+                    placeholder="ex: Porté quelques fois, taille correctement"
+                    onChange={(event) => setDescription(event.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="Publish-product_details Publish-container">
+                <div className="Publish-product_details-brand Publish-product_details-container">
+                  <label>Marque</label>
+                  <input
+                    type="text"
+                    name="newOffer_brand"
+                    id="newOffer_brand"
+                    placeholder="ex: Zara"
+                    onChange={(event) => setBrand(event.target.value)}
+                  />
+                </div>
+                <div className="Publish-product_details-size Publish-product_details-container">
+                  <label>Taille</label>
+                  <input
+                    type="text"
+                    name="newOffer_size"
+                    id="newOffer_size"
+                    placeholder="ex: L / 40 / 12"
+                    onChange={(event) => setSize(event.target.value)}
+                  />
+                </div>
+                <div className="Publish-product_details-color Publish-product_details-container">
+                  <label>Couleur</label>
+                  <input
+                    type="text"
+                    name="newOffer_color"
+                    id="newOffer_color"
+                    placeholder="ex: Fushia"
+                    onChange={(event) => setColor(event.target.value)}
+                  />
+                </div>
+                <div className="Publish-product_details-condition Publish-product_details-container">
+                  <label>Etat</label>
+                  <input
+                    type="text"
+                    name="newOffer_condition"
+                    id="newOffer_condition"
+                    placeholder="ex: Neuf avec étiquette"
+                    onChange={(event) => setCondition(event.target.value)}
+                  />
+                </div>
+                <div className="Publish-product_details-location Publish-product_details-container">
+                  <label>Lieu</label>
+                  <input
+                    type="text"
+                    name="newOffer_location"
+                    id="newOffer_location"
+                    placeholder="ex: Paris"
+                    onChange={(event) => setLocation(event.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="Publish-product_price Publish-container">
+                <div className="Publish-product_details-price Publish-product_details-container">
+                  <label>Prix</label>
+                  <input
+                    type="text"
+                    name="newOffer_price"
+                    id="newOffer_price"
+                    placeholder="0.00 €"
+                    onChange={(event) => setPrice(event.target.value)}
+                  />
+                </div>
+                <div className="Publish-swap Publish-product_details-container">
+                  <label>Échange</label>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="newOffer_swap"
+                      id="newOffer_swap"
+                      onChange={(event) => setSwap(event.target.value)}
+                    />{" "}
+                    <label for="newOffer_swap">
+                      Je suis intéressé par les échanges
+                    </label>
+                  </div>
+                </div>
+              </div>
+              {/*Display error message when needed*/}
+              <p
+                className="Publish-error-message"
+                style={
+                  errorMessage ? { display: "block" } : { display: "hidden" }
+                }
+              >
+                {errorMessage}
+              </p>
+              <div className="Publish-submit">
+                <button type="submit">Ajouter</button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        <ResponsiveMenu
+          userInfo={userInfo}
+          setUser={setUser}
+          setModal={setModal}
+          modal={modal}
+          setResponsiveMenu={setResponsiveMenu}
+        />
+      )}
+      <Footer />
     </>
   );
 };

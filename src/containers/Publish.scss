@@ -1,145 +1,163 @@
 @import "../Variables.scss";
 
-  .Publish-background {
-    background-color: #ebedee;
-    height: 100%;
+.Publish-background {
+  background-color: #ebedee;
+  height: 100%;
 
-    .Publish {
+  .Publish {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .Publish-product_picture {
+      background-color: white;
       display: flex;
-      flex-direction: column;
-      padding-top: 50px;
-      h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-      }
-      .Publish-product_picture {
-        background-color: white;
+      justify-content: center;
+      align-items: center;
+      height: 250px;
+      padding: 25px;
+      box-sizing: border-box;
+      .Publish-product_picture-content {
         display: flex;
+        flex: 1;
         justify-content: center;
         align-items: center;
-        height: 250px;
-        padding: 25px;
-        box-sizing: border-box;
-        .Publish-product_picture-content {
-          display: flex;
-          flex: 1;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-          border: dashed 1px rgb(218, 211, 211);
-          border-radius: 3px;
-          .Picture-uploaded {
-            height: 95%;
-            position: relative;
-            i {
-              right: 5px;
-              top: 5px;
-              position: absolute;
-              z-index: 10;
-              color: white;
-              cursor: pointer;
-            }
-            img {
-              height: 100%;
-              border-radius: 5px;
-            }
-          }
-          label {
-            background-color: white;
-            border: solid 1px $mainColor;
+        height: 100%;
+        border: dashed 1px rgb(218, 211, 211);
+        border-radius: 3px;
+        .Picture-uploaded {
+          height: 95%;
+          position: relative;
+          i {
+            right: 5px;
+            top: 5px;
+            position: absolute;
+            z-index: 10;
+            color: white;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 15px;
+          }
+          img {
+            height: 100%;
             border-radius: 5px;
-            p {
-              color: $mainColor;
-              margin-left: 10px;
-            }
-            i {
-              color: $mainColor;
-            }
-          }
-          label:hover {
-            background-color: $mainColor;
-            p {
-              color: white;
-            }
-            i {
-              color: white;
-            }
-          }
-          input {
-            display: none;
           }
         }
-      }
-      .Publish-container {
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        margin-top: 16px;
-        padding-top: 10px;
-        border: solid 1px rgb(212, 208, 208);
-        .Publish-product_details-container {
-          display: flex;
-          margin: 10px 0;
-          padding-bottom: 20px;
-          border-bottom: solid 1px rgb(229, 236, 229);
-          label {
-            flex: 1;
-            color: #666666;
-            margin-left: 25px;
-          }
-          input {
-            flex: 1;
-            border: none;
-            border-bottom: solid 1px rgb(229, 236, 229);
-            padding-bottom: 5px;
-            color: #666666;
-            font-size: 16px;
-          }
-          input::placeholder {
-            font-size: 16px;
-            color: rgb(201, 209, 201);
-            font-weight: 100;
-          }
-        }
-        .Publish-product_details-container:last-child {
-          border-bottom: none;
-          padding-bottom: 10px;
-        }
-        .Publish-swap {
-          display: flex;
-          div {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            label {
-              flex: 1;
-              margin-left: 10px;
-            }
-            input {
-              flex: 0;
-            }
-          }
-        }
-      }
-      .Publish-submit {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 50px;
-        margin-bottom: 80px;
-        button {
-          background-color: $mainColor;
-          color: white;
-          border: none;
-          height: 40px;
-          width: 75px;
-          border-radius: 5px;
-          font-size: 16px;
+        label {
+          background-color: white;
+          border: solid 1px $mainColor;
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          padding: 15px;
+          border-radius: 5px;
+          p {
+            color: $mainColor;
+            margin-left: 10px;
+          }
+          i {
+            color: $mainColor;
+          }
+        }
+        label:hover {
+          background-color: $mainColor;
+          p {
+            color: white;
+          }
+          i {
+            color: white;
+          }
+        }
+        input {
+          display: none;
         }
       }
     }
+    .Publish-container {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      margin-top: 16px;
+      padding-top: 10px;
+      border: solid 1px rgb(212, 208, 208);
+      .Publish-product_details-container {
+        display: flex;
+        margin: 10px 0;
+        padding-bottom: 20px;
+        border-bottom: solid 1px rgb(229, 236, 229);
+        align-items: center;
+        @media (max-width: $mediumWindow) {
+          flex-direction: column;
+          align-items: stretch;
+          padding-bottom: 15px;
+        }
+        label {
+          flex: 1;
+          color: #666666;
+          margin-left: 25px;
+        }
+        input {
+          flex: 2;
+          margin-left: 25px;
+          border: none;
+          border-bottom: solid 1px rgb(229, 236, 229);
+          padding-bottom: 5px;
+          color: #666666;
+          font-size: 16px;
+          text-overflow: ellipsis;
+          @media (max-width: $mediumWindow) {
+            margin-top: 10px;
+            flex: 1;
+            margin-right: 25px;
+          }
+        }
+        input::placeholder {
+          font-size: 16px;
+          color: rgb(201, 209, 201);
+          font-weight: 100;
+        }
+      }
+      .Publish-product_details-container:last-child {
+        border-bottom: none;
+        padding-bottom: 10px;
+        @media (max-width: $mediumWindow) {
+          label {
+            margin-top: 7px;
+          }
+        }
+      }
+      .Publish-swap {
+        display: flex;
+        div {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          label {
+            flex: 1;
+            margin-left: 10px;
+          }
+          input {
+            flex: 0;
+          }
+        }
+      }
+    }
+    .Publish-submit {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 50px;
+      margin-bottom: 80px;
+      button {
+        background-color: $mainColor;
+        color: white;
+        border: none;
+        height: 40px;
+        width: 75px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
   }
+}

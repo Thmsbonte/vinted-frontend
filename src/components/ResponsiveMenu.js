@@ -1,7 +1,13 @@
 import "./ResponsiveMenu.scss";
 import { Link, useHistory } from "react-router-dom";
 
-const ResponsiveMenu = ({ userInfo, setUser, modal, setModal }) => {
+const ResponsiveMenu = ({
+  userInfo,
+  setUser,
+  modal,
+  setModal,
+  setResponsiveMenu,
+}) => {
   const history = useHistory();
   return (
     <div className="container Responsive-menu">
@@ -11,6 +17,7 @@ const ResponsiveMenu = ({ userInfo, setUser, modal, setModal }) => {
           className="Button-logout"
           onClick={() => {
             setUser(null);
+            setResponsiveMenu(false);
             history.push("/");
           }}
         >
@@ -34,7 +41,11 @@ const ResponsiveMenu = ({ userInfo, setUser, modal, setModal }) => {
       )}
       {/* If user connected, redirection to the publish page, else redirection to the login page*/}
       {userInfo.token ? (
-        <Link to="/offer/publish" className="Button-sell">
+        <Link
+          to="/offer/publish"
+          className="Button-sell"
+          onClick={() => setResponsiveMenu(false)}
+        >
           Vends tes articles
         </Link>
       ) : (

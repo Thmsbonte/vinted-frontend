@@ -4,7 +4,7 @@ import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const LoginModal = ({ setUser, modal, setModal }) => {
+const LoginModal = ({ setUser, modal, setModal, setResponsiveMenu }) => {
   // States and useHistory initialization
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
@@ -35,12 +35,14 @@ const LoginModal = ({ setUser, modal, setModal }) => {
         "https://lereacteur-vinted-backend.herokuapp.com/user/login",
         credentials
       );
+      // Save user token and username information
       setUser(
         response.data.token,
         response.data.account.username,
         response.data._id
-      ); // Save user token and username information
+      );
       setLoadingMessage(false);
+      setResponsiveMenu(false);
       // If the user comes from the "sell article" button, we redirect him to the publish page
       if (modal.openingPage === "publish") {
         const newModal = { ...modal };

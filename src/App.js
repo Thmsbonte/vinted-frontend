@@ -135,13 +135,34 @@ const App = () => {
       />
       <Switch>
         <Route path="/payment">
-          <Payment />
+          <Payment
+            modal={modal}
+            setModal={setModal}
+            responsiveMenu={responsiveMenu}
+            setResponsiveMenu={setResponsiveMenu}
+            userInfo={userInfo}
+            setUser={setUser}
+          />
         </Route>
         <Route path="/offer/publish">
-          <Publish />
+          <Publish
+            modal={modal}
+            setModal={setModal}
+            responsiveMenu={responsiveMenu}
+            setResponsiveMenu={setResponsiveMenu}
+            userInfo={userInfo}
+            setUser={setUser}
+          />
         </Route>
         <Route path="/offer/:id">
-          <Offer modal={modal} setModal={setModal} />
+          <Offer
+            modal={modal}
+            setModal={setModal}
+            responsiveMenu={responsiveMenu}
+            setResponsiveMenu={setResponsiveMenu}
+            userInfo={userInfo}
+            setUser={setUser}
+          />
         </Route>
         <Redirect from="/reload" to="/" />
         <Route path="/">
@@ -152,6 +173,7 @@ const App = () => {
             setOffers={setOffers}
             errorMessage={errorMessage}
             responsiveMenu={responsiveMenu}
+            setResponsiveMenu={setResponsiveMenu}
             userInfo={userInfo}
             setUser={setUser}
             modal={modal}

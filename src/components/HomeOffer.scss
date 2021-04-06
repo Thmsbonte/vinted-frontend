@@ -34,7 +34,7 @@
       margin-right: 0px;
     }
   }
-  @media (max-width: $smallWindow) {
+  @media (max-width: $mobile) {
     width: calc(100% - 15px);
     &:nth-child(2n) {
       margin-right: 15px;

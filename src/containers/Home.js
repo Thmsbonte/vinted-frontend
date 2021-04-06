@@ -10,6 +10,7 @@ const Home = ({
   setOffers,
   errorMessage,
   responsiveMenu,
+  setResponsiveMenu,
   userInfo,
   setUser,
   modal,
@@ -35,6 +36,7 @@ const Home = ({
         setUser={setUser}
         setModal={setModal}
         modal={modal}
+        setResponsiveMenu={setResponsiveMenu}
       />
       <Footer />
     </>

@@ -25,7 +25,12 @@ const Header = ({
     <>
       {/* Display login and signup modal when necessary */}
       {modal.loginModal && (
-        <LoginModal modal={modal} setModal={setModal} setUser={setUser} />
+        <LoginModal
+          modal={modal}
+          setModal={setModal}
+          setUser={setUser}
+          setResponsiveMenu={setResponsiveMenu}
+        />
       )}
       {modal.signupModal && (
         <SignupModal modal={modal} setModal={setModal} setUser={setUser} />
@@ -155,7 +160,11 @@ const Header = ({
               setResponsiveMenu(!responsiveMenu);
             }}
           >
-            <FontAwesomeIcon icon="bars" size="2x" />
+            {responsiveMenu ? (
+              <FontAwesomeIcon icon="times" size="2x" />
+            ) : (
+              <FontAwesomeIcon icon="bars" size="2x" />
+            )}
           </div>
         </div>
         <div className="Responsive-search-bar">

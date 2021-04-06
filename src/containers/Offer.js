@@ -3,8 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Footer from "../components/Footer";
+import ResponsiveMenu from "../components/ResponsiveMenu";
 
-const Offer = ({ modal, setModal }) => {
+const Offer = ({
+  modal,
+  setModal,
+  userInfo,
+  setUser,
+  setResponsiveMenu,
+  responsiveMenu,
+}) => {
   // States and params initialization
   const { id } = useParams();
   const [offer, setOffer] = useState();
@@ -37,59 +46,75 @@ const Offer = ({ modal, setModal }) => {
   ) : errorMessage ? (
     <p className="Error-message">{errorMessage} </p>
   ) : (
-    <div className="Offer-background">
-      <div className="Offer container">
-        <div className="Offer-product_image">
-          <img src={offer.product_image.secure_url} alt="Product" />
-        </div>
-        <div className="Offer-product_info">
-          <div className="Product-price">{offer.product_price} €</div>
-          {offer.product_details.map((item) => {
-            let objectKeys = Object.keys(item);
-            return (
-              <div className="Offer-product_details">
-                <p>{objectKeys[0]}</p>
-                <p>{item[objectKeys[0]].toUpperCase()}</p>
-              </div>
-            );
-          })}
-          <div className="Product_presentation">
-            <h2>{offer.product_name}</h2>
-            <p>{offer.product_description}</p>
-            <div className="Offer-user">
-              <img src={offer.owner.account.avatar.secure_url} alt="avatar" />
-              <p>{offer.owner.account.username}</p>
+    <>
+      {!responsiveMenu ? (
+        <div className="Offer-background">
+          <div className="Offer container">
+            <div className="Offer-product_image">
+              <img src={offer.product_image.secure_url} alt="Product" />
             </div>
-            <div className="Offer-buy-button">
-              {Cookies.get("userToken") ? (
-                <Link
-                  to={{
-                    pathname: "/payment",
-                    state: {
-                      offer_id: id,
-                      offer: offer,
-                    },
-                  }}
-                >
-                  Acheter
-                </Link>
-              ) : (
-                <p
-                  onClick={() => {
-                    const newModal = { ...modal };
-                    newModal.loginModal = !modal.loginModal;
-                    newModal.openingPage = id;
-                    setModal(newModal);
-                  }}
-                >
-                  Merci de vous connecter pour acheter
-                </p>
-              )}
+            <div className="Offer-product_info">
+              <div className="Product-price">{offer.product_price} €</div>
+              {offer.product_details.map((item) => {
+                let objectKeys = Object.keys(item);
+                return (
+                  <div className="Offer-product_details">
+                    <p>{objectKeys[0]}</p>
+                    <p>{item[objectKeys[0]].toUpperCase()}</p>
+                  </div>
+                );
+              })}
+              <div className="Product_presentation">
+                <h2>{offer.product_name}</h2>
+                <p>{offer.product_description}</p>
+                <div className="Offer-user">
+                  <img
+                    src={offer.owner.account.avatar.secure_url}
+                    alt="avatar"
+                  />
+                  <p>{offer.owner.account.username}</p>
+                </div>
+                <div className="Offer-buy-button">
+                  {Cookies.get("userToken") ? (
+                    <Link
+                      to={{
+                        pathname: "/payment",
+                        state: {
+                          offer_id: id,
+                          offer: offer,
+                        },
+                      }}
+                    >
+                      Acheter
+                    </Link>
+                  ) : (
+                    <p
+                      onClick={() => {
+                        const newModal = { ...modal };
+                        newModal.loginModal = !modal.loginModal;
+                        newModal.openingPage = id;
+                        setModal(newModal);
+                      }}
+                    >
+                      Merci de vous connecter pour acheter
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <ResponsiveMenu
+          userInfo={userInfo}
+          setUser={setUser}
+          setModal={setModal}
+          modal={modal}
+          setResponsiveMenu={setResponsiveMenu}
+        />
+      )}
+      <Footer />
+    </>
   );
 };
 
