@@ -125,12 +125,15 @@
       display: flex;
       justify-content: center;
     }
-    i {
-      color: $mainColor;
-      margin-right: 10px;
-      padding: 4px 8px;
-      border-radius: 50%;
-      border: solid 1px $mainColor;
+    .About-link {
+      > a {
+        color: $mainColor;
+        margin-right: 10px;
+        padding: 4px 8px;
+        border-radius: 50%;
+        border: solid 1px $mainColor;
+        cursor: pointer;
+      }
     }
     select {
       border: none;

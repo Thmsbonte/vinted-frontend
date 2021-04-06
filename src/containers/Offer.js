@@ -19,6 +19,7 @@ const Offer = ({
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [image, setImage] = useState(0);
 
   // Get offer information only once at the opening of the page
   useEffect(() => {
@@ -50,9 +51,44 @@ const Offer = ({
       {!responsiveMenu ? (
         <div className="Offer-background">
           <div className="Offer container">
-            <div className="Offer-product_image">
-              <img src={offer.product_image.secure_url} alt="Product" />
+            <div className="Offer-product_images">
+              <div className="Offer-product_other_images">
+                {offer.product_image[0] &&
+                  offer.product_image.map((elem, index) => {
+                    return (
+                      <img
+                        src={elem.secure_url}
+                        alt="Product"
+                        key={index}
+                        onClick={() => {
+                          setImage(index);
+                        }}
+                        style={
+                          image === index
+                            ? {
+                                borderWidth: 2,
+                                borderStyle: "solid",
+                                borderBlockColor: "black",
+                              }
+                            : { borderWidth: 0 }
+                        }
+                      />
+                    );
+                  })}
+              </div>
+              <div className="Offer-product_image">
+                {/* We handle offers created before the possibility of uploading multi-images */}
+                {offer.product_image[0] ? (
+                  <img
+                    src={offer.product_image[image].secure_url}
+                    alt="Product"
+                  />
+                ) : (
+                  <img src={offer.product_image.secure_url} alt="Product" />
+                )}
+              </div>
             </div>
+
             <div className="Offer-product_info">
               <div className="Product-price">{offer.product_price} €</div>
               {offer.product_details.map((item) => {

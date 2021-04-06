@@ -24,7 +24,6 @@ const HeaderSearchBar = ({ setFilters, filters, fetchData }) => {
         type="text"
         name="search-bar"
         className="Search-bar"
-        id="search-bar"
         placeholder="Rechercher des articles"
         // Send new data request for each new value entered in search bar. Debounce function to send a new request every 500ms maximum.
         onChange={debounce((event) => {

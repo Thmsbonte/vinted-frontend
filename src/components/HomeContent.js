@@ -6,7 +6,7 @@ const HomeContent = ({ offers }) => {
     <div className="Home-content container">
       {/* Display home page offers */}
       {offers.map((item) => {
-        return <HomeOffer offer={item} key={item.id} />;
+        return <HomeOffer offer={item} key={item._id} />;
       })}
     </div>
   );

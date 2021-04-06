@@ -23,9 +23,11 @@ import {
   faPlus,
   faCross,
   faBars,
+  faChevronCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Publish from "./containers/Publish";
 import Payment from "./containers/Payment";
+import About from "./containers/About";
 library.add(
   faSearch,
   faQuestion,
@@ -35,7 +37,8 @@ library.add(
   faPlus,
   faCross,
   faTimesCircle,
-  faBars
+  faBars,
+  faChevronCircleRight
 );
 
 const App = () => {
@@ -156,6 +159,16 @@ const App = () => {
         </Route>
         <Route path="/offer/:id">
           <Offer
+            modal={modal}
+            setModal={setModal}
+            responsiveMenu={responsiveMenu}
+            setResponsiveMenu={setResponsiveMenu}
+            userInfo={userInfo}
+            setUser={setUser}
+          />
+        </Route>
+        <Route path="/about">
+          <About
             modal={modal}
             setModal={setModal}
             responsiveMenu={responsiveMenu}

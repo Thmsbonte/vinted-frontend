@@ -23,7 +23,6 @@
       .Publish-product_picture-content {
         display: flex;
         flex: 1;
-        justify-content: center;
         align-items: center;
         height: 100%;
         border: dashed 1px rgb(218, 211, 211);
@@ -31,6 +30,7 @@
         .Picture-uploaded {
           height: 95%;
           position: relative;
+          margin-left: 5px;
           i {
             right: 5px;
             top: 5px;
@@ -44,33 +44,42 @@
             border-radius: 5px;
           }
         }
-        label {
-          background-color: white;
-          border: solid 1px $mainColor;
-          cursor: pointer;
+        .Upload-file {
           display: flex;
-          align-items: center;
-          padding: 15px;
-          border-radius: 5px;
-          p {
+          flex: 1;
+          justify-content: center;
+          label {
+            background-color: white;
+            border: solid 1px $mainColor;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 5px;
+            margin-left: 5px;
+            p {
+              color: $mainColor;
+              margin-left: 10px;
+            }
+            i {
+              color: $mainColor;
+            }
+          }
+          > p {
             color: $mainColor;
-            margin-left: 10px;
           }
-          i {
-            color: $mainColor;
+          label:hover {
+            background-color: $mainColor;
+            p {
+              color: white;
+            }
+            i {
+              color: white;
+            }
           }
-        }
-        label:hover {
-          background-color: $mainColor;
-          p {
-            color: white;
+          input {
+            display: none;
           }
-          i {
-            color: white;
-          }
-        }
-        input {
-          display: none;
         }
       }
     }

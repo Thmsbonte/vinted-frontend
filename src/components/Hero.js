@@ -26,7 +26,7 @@ const Hero = ({ userInfo, modal, setModal }) => {
                 Commencer à vendre
               </Link>
             )}
-            <Link to="#" className="link">
+            <Link to="/about" className="link">
               Découvrir comment ça marche
             </Link>
           </div>
@@ -53,7 +53,7 @@ const Hero = ({ userInfo, modal, setModal }) => {
               Commencer à vendre
             </Link>
           )}
-          <Link to="#" className="link">
+          <Link to="/about" className="link">
             Découvrir comment ça marche
           </Link>
         </div>

@@ -115,6 +115,7 @@ const Header = ({
             ) : (
               // If user not connected diplay of the login button
               <Link
+                to="#"
                 onClick={() => {
                   const newModal = { ...modal };
                   newModal.loginModal = !modal.loginModal;
@@ -144,9 +145,12 @@ const Header = ({
                 Vends tes articles
               </Link>
             )}
-            <i>
-              <FontAwesomeIcon icon="question" />
-            </i>
+            <div className="About-link">
+              <Link to="/about">
+                <FontAwesomeIcon icon="question" />
+              </Link>
+            </div>
+
             <select name="language" id="language" placeholder="FR">
               <option value="">FR</option>
             </select>

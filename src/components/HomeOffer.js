@@ -14,7 +14,12 @@ const HomeOffer = ({ offer }) => {
         <p>{offer.owner.account.username}</p>
       </div>
       <div className="Home-offer-picture">
-        <img src={offer.product_image.secure_url} alt="" />
+        {/* We handle offers created before the possibility of uploading multi-images */}
+        {offer.product_image[0] ? (
+          <img src={offer.product_image[0].secure_url} alt="Product" />
+        ) : (
+          <img src={offer.product_image.secure_url} alt="Product" />
+        )}
       </div>
       <div className="Home-offer-info">
         <div className="Home-offer-info-left">

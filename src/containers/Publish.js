@@ -17,7 +17,7 @@ const Publish = ({
   responsiveMenu,
 }) => {
   // States initialization
-  const [picture, setPicture] = useState("");
+  const [picture, setPicture] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -28,7 +28,7 @@ const Publish = ({
   const [price, setPrice] = useState("");
   const [swap, setSwap] = useState("");
 
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [loadingModal, setLoadingModal] = useState(false);
 
@@ -39,9 +39,10 @@ const Publish = ({
     event.preventDefault();
     setErrorMessage(""); // Initialization of an error message state
     setLoadingModal(true); // Set "loading" modal state -> display of the modal
-
     const formData = new FormData();
-    formData.append("picture", picture);
+    for (let i = 0; i < picture.length; i++) {
+      formData.append(`picture${i}`, picture[i]);
+    }
     formData.append("title", title);
     formData.append("description", description);
     formData.append("brand", brand);
@@ -52,22 +53,34 @@ const Publish = ({
     formData.append("price", price);
     formData.append("swap", swap);
 
+    // const server = "https://lereacteur-vinted-backend.herokuapp.com/offer/publish";
+    const server = "http://localhost:3100/offer/publish";
     const userToken = Cookies.get("userToken");
     try {
-      const response = await axios.post(
-        "https://lereacteur-vinted-backend.herokuapp.com/offer/publish",
-        formData,
-        {
-          headers: {
-            authorization: `Bearer ${userToken}`,
-          },
-        }
-      );
+      const response = await axios.post(server, formData, {
+        headers: {
+          authorization: `Bearer ${userToken}`,
+        },
+      });
       setLoadingModal(false); // Re-initialize loading state when request is done (success)
       history.push(`/offer/${response.data._id}`); // Redirection to the page of the new offer
     } catch (error) {
       setLoadingModal(false); // Re-initialize loading state when request is done (error)
       setErrorMessage(error.response.data.message); // Set an "error message" to display to the user
+    }
+  };
+
+  const handleDeletePicture = (index) => {
+    const numberOfPicture = picture.length;
+    const newPicture = [...picture];
+    newPicture.splice(index, 1);
+    setPicture(newPicture);
+    const newPreview = [...preview];
+    newPreview.splice(index, 1);
+    setPreview(newPreview);
+    // If it's last picture, clean input value to be able to upload again the same picture
+    if (numberOfPicture <= 1) {
+      document.getElementById("newOffer_picture").value = null;
     }
   };
 
@@ -83,41 +96,60 @@ const Publish = ({
               <div className="Publish-product_picture">
                 <div className="Publish-product_picture-content">
                   {/*Display loaded picture*/}
-                  {preview && (
-                    <div className="Picture-uploaded">
-                      {/*On click on the cross, we reinitialize the state and the value of the file input*/}
-                      <i
-                        onClick={() => {
-                          setPicture("");
-                          setPreview("");
-                          document.getElementById(
-                            "newOffer_picture"
-                          ).value = null;
-                        }}
+
+                  {preview.length > 0 &&
+                    preview.map((path, index) => {
+                      return (
+                        <div className="Picture-uploaded" key={index}>
+                          <i
+                            /*On click on the cross, we update picture preview and pictures to upload*/
+                            onClick={(index) => {
+                              handleDeletePicture(index);
+                            }}
+                          >
+                            <FontAwesomeIcon icon="times-circle" />
+                          </i>
+                          <img src={path} alt="Upload" />
+                        </div>
+                      );
+                    })}
+                  <div className="Upload-file">
+                    {/* Add maximum 4 pictures */}
+                    {picture.length < 4 ? (
+                      <label
+                        style={
+                          preview.length > 4
+                            ? { display: "none" }
+                            : { display: "flex" }
+                        }
+                        for="newOffer_picture"
                       >
-                        <FontAwesomeIcon icon="times-circle" />
-                      </i>
-                      <img src={preview} alt="Upload" />
-                    </div>
-                  )}
-                  <label
-                    style={preview ? { display: "none" } : { display: "flex" }}
-                    for="newOffer_picture"
-                  >
-                    <i>
-                      <FontAwesomeIcon icon="plus" size="2x" />
-                    </i>
-                    <p>Ajoute une photo</p>{" "}
-                  </label>
-                  <input
-                    type="file"
-                    name="newOffer_picture"
-                    id="newOffer_picture"
-                    onChange={(event) => {
-                      setPicture(event.target.files[0]);
-                      setPreview(URL.createObjectURL(event.target.files[0]));
-                    }}
-                  />
+                        <i>
+                          <FontAwesomeIcon icon="plus" size="2x" />
+                        </i>
+                        <p>Ajoute une photo</p>{" "}
+                      </label>
+                    ) : (
+                      <p>Vous pouvez ajouter 4 photos maximum.</p>
+                    )}
+                    <input
+                      // multiple={true}
+                      accept=".jpg, .jpeg, .png"
+                      type="file"
+                      name="newOffer_picture"
+                      id="newOffer_picture"
+                      onChange={(event) => {
+                        const newPicture = [...picture];
+                        newPicture.push(event.target.files[0]);
+                        setPicture(newPicture);
+                        const newPreview = [...preview];
+                        newPreview.push(
+                          URL.createObjectURL(event.target.files[0])
+                        );
+                        setPreview(newPreview);
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="Publish-product_description Publish-container">
@@ -214,9 +246,7 @@ const Publish = ({
                       id="newOffer_swap"
                       onChange={(event) => setSwap(event.target.value)}
                     />{" "}
-                    <label for="newOffer_swap">
-                      Je suis intéressé par les échanges
-                    </label>
+                    <label>Je suis intéressé par les échanges</label>
                   </div>
                 </div>
               </div>
