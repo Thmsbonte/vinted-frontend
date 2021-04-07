@@ -72,10 +72,66 @@
   .Header-right {
     display: flex;
     align-items: center;
+    position: relative;
     height: 35px;
     margin-left: 40px;
     @media (max-width: $largeWindow) {
       display: none;
+    }
+    .Header-menu {
+      position: absolute;
+      width: 170px;
+      background-color: white;
+      top: 45px;
+      box-shadow: 3px 2px 5px 0px #666;
+      border-radius: 2px;
+      padding: 5px;
+      box-sizing: border-box;
+      > i {
+        display: flex;
+        z-index: 1;
+        justify-content: flex-end;
+        margin-top: -11px;
+        color: white;
+        .fa-sort-up {
+          filter: drop-shadow(1px 0px 0px #666);
+        }
+      }
+      > p {
+        color: #999;
+        font-size: 14px;
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+      a {
+        color: rgb(73, 73, 73);
+        font-weight: 300;
+        font-size: 17px;
+        margin-top: 15px;
+        padding: 7px;
+        &:hover {
+          background-color: rgb(240, 239, 239);
+          border-radius: 2px;
+        }
+      }
+      button {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 5px;
+        background-color: white;
+        border: none;
+        color: rgb(73, 73, 73);
+        font-size: 17px;
+        margin-bottom: 5px;
+        font-weight: 300;
+        padding: 7px;
+        cursor: pointer;
+        &:hover {
+          background-color: rgb(240, 239, 239);
+          border-radius: 2px;
+        }
+      }
     }
     a {
       padding: 0 7px;
@@ -94,21 +150,29 @@
       display: flex;
       justify-content: center;
     }
-    .Button-logout {
+    .Button-account {
+      display: flex;
+      // justify-content: flex-end;
       background-color: white;
       border: solid 1px $mainColor;
       color: $mainColor;
       margin-right: 10px;
       height: 100%;
-      width: 140px;
+      width: 170px;
       padding: 0 7px;
       border-radius: 5px;
       text-decoration: none;
       align-items: center;
+      cursor: pointer;
       > p {
+        flex: 1;
+        text-align: center;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+      > i {
+        margin-right: 5px;
       }
 
       strong {

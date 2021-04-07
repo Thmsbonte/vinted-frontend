@@ -12,7 +12,6 @@ import Home from "./containers/Home";
 import Header from "./components/Header";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import axios from "axios";
-// import dotenv from "dotenv";
 import {
   faSearch,
   faQuestion,
@@ -24,10 +23,13 @@ import {
   faCross,
   faBars,
   faChevronCircleRight,
+  faSortUp,
+  faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Publish from "./containers/Publish";
 import Payment from "./containers/Payment";
 import About from "./containers/About";
+import MyOffers from "./containers/MyOffers";
 library.add(
   faSearch,
   faQuestion,
@@ -38,7 +40,9 @@ library.add(
   faCross,
   faTimesCircle,
   faBars,
-  faChevronCircleRight
+  faChevronCircleRight,
+  faSortUp,
+  faSortDown
 );
 
 const App = () => {
@@ -159,6 +163,16 @@ const App = () => {
         </Route>
         <Route path="/offer/:id">
           <Offer
+            modal={modal}
+            setModal={setModal}
+            responsiveMenu={responsiveMenu}
+            setResponsiveMenu={setResponsiveMenu}
+            userInfo={userInfo}
+            setUser={setUser}
+          />
+        </Route>
+        <Route path="/my-offers">
+          <MyOffers
             modal={modal}
             setModal={setModal}
             responsiveMenu={responsiveMenu}

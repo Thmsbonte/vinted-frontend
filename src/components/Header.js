@@ -101,19 +101,46 @@ const Header = ({
             </div>
           </div>
           <div className="Header-right">
+            {headerMenu && (
+              <div className="Header-menu">
+                <i>
+                  <FontAwesomeIcon icon="sort-up" />
+                </i>
+                <p>Mon compte</p>
+                <Link
+                  to="/my-offers"
+                  onClick={() => {
+                    setHeaderMenu(!headerMenu);
+                  }}
+                >
+                  Mes articles
+                </Link>
+                <button
+                  className="Button-logout"
+                  onClick={() => {
+                    setHeaderMenu(!headerMenu);
+                    setUser(null);
+                    history.push("/");
+                  }}
+                >
+                  Se déconnecter
+                </button>
+              </div>
+            )}
             {/* If user connected display of a logout button with his username*/}
             {userInfo.token ? (
               <button
-                className="Button-logout"
+                className="Button-account"
                 onClick={() => {
-                  setUser(null);
-                  history.push("/");
+                  setHeaderMenu(!headerMenu);
                 }}
               >
                 <p>
                   Bonjour <strong>{userInfo.username}</strong>
                 </p>
-                <span>Se déconnecter</span>
+                <i>
+                  <FontAwesomeIcon icon="sort-down" />
+                </i>
               </button>
             ) : (
               // If user not connected diplay of the login button
