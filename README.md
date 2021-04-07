@@ -14,6 +14,7 @@ Partial clone of Vinted website realized while learning React.
 - Article details
 - Payment
 - Publish a new article
+- About
 
 ### Main features
 - **Login** and **Signup**
