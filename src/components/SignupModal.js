@@ -9,6 +9,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
   const history = useHistory();
   const [loadingMessage, setLoadingMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState("");
   const [credentials, setCredentials] = useState({
     username: "",
     email: "",
@@ -27,6 +28,10 @@ const SignupModal = ({ setUser, modal, setModal }) => {
 
   // Function : save user profile picture object
   const handleFileChange = (event) => {
+    console.log(event.target.files[0].name);
+    const newAvatarPreview = [...avatarPreview];
+    newAvatarPreview.push(event.target.files[0].name);
+    setAvatarPreview(newAvatarPreview);
     const newCredentials = { ...credentials };
     newCredentials.avatar = event.target.files[0];
     setCredentials(newCredentials);
@@ -138,7 +143,8 @@ const SignupModal = ({ setUser, modal, setModal }) => {
               name="avatar"
               id="avatar"
               onChange={handleFileChange}
-            />
+            />{" "}
+            <p className="Avatar-preview">{avatarPreview}</p>
           </div>
           <div className="Modal-newsletter">
             <input
