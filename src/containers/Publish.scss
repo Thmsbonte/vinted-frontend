@@ -41,7 +41,9 @@
           }
           img {
             height: 100%;
+            width: 130px;
             border-radius: 5px;
+            object-fit: cover;
           }
         }
         .Upload-file {

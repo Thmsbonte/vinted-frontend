@@ -53,8 +53,9 @@ const Publish = ({
     formData.append("price", price);
     formData.append("swap", swap);
 
-    // const server = "https://lereacteur-vinted-backend.herokuapp.com/offer/publish";
-    const server = "http://localhost:3100/offer/publish";
+    const server =
+      "https://lereacteur-vinted-backend.herokuapp.com/offer/publish";
+    // const server = "http://localhost:3100/offer/publish";
     const userToken = Cookies.get("userToken");
     try {
       const response = await axios.post(server, formData, {
@@ -66,7 +67,7 @@ const Publish = ({
       history.push(`/offer/${response.data._id}`); // Redirection to the page of the new offer
     } catch (error) {
       setLoadingModal(false); // Re-initialize loading state when request is done (error)
-      setErrorMessage(error.response.data.message); // Set an "error message" to display to the user
+      setErrorMessage(error.response.data?.message); // Set an "error message" to display to the user
     }
   };
 
@@ -103,7 +104,7 @@ const Publish = ({
                         <div className="Picture-uploaded" key={index}>
                           <i
                             /*On click on the cross, we update picture preview and pictures to upload*/
-                            onClick={(index) => {
+                            onClick={() => {
                               handleDeletePicture(index);
                             }}
                           >

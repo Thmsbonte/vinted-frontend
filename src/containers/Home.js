@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import HomeContent from "../components/HomeContent";
 import ResponsiveMenu from "../components/ResponsiveMenu";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 const Home = ({
   isLoading,
@@ -18,7 +19,12 @@ const Home = ({
 }) => {
   // Display loading or error message from fetchData() App containers
   return isLoading ? (
-    <p className="Is-loading">En cours de chargement </p>
+    <>
+      <div className="Is-loading">
+        <p>En cours de chargement</p>
+        <Loading />
+      </div>
+    </>
   ) : errorMessage ? (
     <p className="Error-message">{errorMessage} </p>
   ) : !responsiveMenu ? (

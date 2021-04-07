@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Footer from "../components/Footer";
 import ResponsiveMenu from "../components/ResponsiveMenu";
+import Loading from "../components/Loading";
 
 const Offer = ({
   modal,
@@ -43,7 +44,9 @@ const Offer = ({
 
   // Display loading or error messages when needed
   return isLoading ? (
-    <p className="Is-loading">En cours de chargement </p>
+    <div className="Is-loading">
+      <Loading />
+    </div>
   ) : errorMessage ? (
     <p className="Error-message">{errorMessage} </p>
   ) : (
