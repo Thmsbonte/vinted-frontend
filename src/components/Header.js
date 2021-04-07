@@ -6,6 +6,7 @@ import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import LabeledTwoThumbs from "./Slider";
 import HeaderSearchBar from "./HeaderSearchBar";
+import { useState } from "react";
 
 const Header = ({
   userInfo,
@@ -20,6 +21,8 @@ const Header = ({
 }) => {
   // UseHistory initialization
   const history = useHistory();
+
+  const [headerMenu, setHeaderMenu] = useState(false);
 
   return (
     <>
