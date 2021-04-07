@@ -36,6 +36,7 @@ const Publish = ({
 
   // Function : handle submit form submit-> send offer data to the backend
   const handleOnSubmit = async (event) => {
+    const newPrice = Number(price.replace(",", ".")).toFixed(2);
     event.preventDefault();
     setErrorMessage(""); // Initialization of an error message state
     setLoadingModal(true); // Set "loading" modal state -> display of the modal
@@ -50,7 +51,7 @@ const Publish = ({
     formData.append("color", color);
     formData.append("condition", condition);
     formData.append("location", location);
-    formData.append("price", price);
+    formData.append("price", newPrice);
     formData.append("swap", swap);
 
     const server =
