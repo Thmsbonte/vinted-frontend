@@ -12,7 +12,7 @@ const MyOfferCard = ({ offer, setErrorMessage }) => {
     if (offer_id && user_id) {
       try {
         const response = await axios.post(
-          "http://localhost:3100/offer/delete",
+          "https://lereacteur-vinted-backend.herokuapp.com/offer/delete",
           {
             offer_id: offer_id,
             user_id: user_id,

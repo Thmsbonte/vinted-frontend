@@ -22,9 +22,12 @@ const MyOffers = ({
     const fetchData = async (userId) => {
       if (userId) {
         try {
-          const response = await axios.post("http://localhost:3100/my-offers", {
-            user_id: userId,
-          });
+          const response = await axios.post(
+            "https://lereacteur-vinted-backend.herokuapp.com/my-offers",
+            {
+              user_id: userId,
+            }
+          );
           setUserOffers(response.data);
           setIsLoading(false);
         } catch (error) {
