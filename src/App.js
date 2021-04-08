@@ -30,6 +30,7 @@ import Publish from "./containers/Publish";
 import Payment from "./containers/Payment";
 import About from "./containers/About";
 import MyOffers from "./containers/MyOffers";
+import UpdateOffer from "./containers/UpdateOffer";
 library.add(
   faSearch,
   faQuestion,
@@ -153,6 +154,16 @@ const App = () => {
         </Route>
         <Route path="/offer/publish">
           <Publish
+            modal={modal}
+            setModal={setModal}
+            responsiveMenu={responsiveMenu}
+            setResponsiveMenu={setResponsiveMenu}
+            userInfo={userInfo}
+            setUser={setUser}
+          />
+        </Route>
+        <Route path="/offer/update/:id">
+          <UpdateOffer
             modal={modal}
             setModal={setModal}
             responsiveMenu={responsiveMenu}

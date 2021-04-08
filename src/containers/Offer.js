@@ -20,7 +20,7 @@ const Offer = ({
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [image, setImage] = useState(0);
+  const [image, setImage] = useState(0); // Allow to determine which image is displayed in big
 
   // Get offer information only once at the opening of the page
   useEffect(() => {

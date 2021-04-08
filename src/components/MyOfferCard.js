@@ -50,7 +50,7 @@ const MyOfferCard = ({ offer, setErrorMessage }) => {
         <div
           className="My-offer-picture"
           onClick={() => {
-            history.push(`/Offer/${offer._id}`);
+            history.push(`/offer/${offer._id}`);
           }}
         >
           {/* We handle offers created before the possibility of uploading multi-images */}
@@ -72,7 +72,13 @@ const MyOfferCard = ({ offer, setErrorMessage }) => {
             </div>
           </div>
           <div className="My-offer-buttons">
-            <button onClick={() => {}}>Modifier l'annonce</button>
+            <button
+              onClick={() => {
+                history.push(`/offer/update/${offer._id}`);
+              }}
+            >
+              Modifier l'annonce
+            </button>
             <button onClick={() => setModalDelete(!modalDelete)}>
               Supprimer
             </button>

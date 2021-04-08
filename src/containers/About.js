@@ -71,8 +71,8 @@ const About = ({
 
             <div className="Github-links">
               <p>
-                Le code source et les détails sur le stack utilisé sont
-                disponibles sur le{" "}
+                Le code source et les détails du stack utilisé sont disponibles
+                sur le{" "}
                 <a
                   href="https://github.com/Thmsbonte/vinted-frontend"
                   target="_blank"

@@ -3,35 +3,34 @@
 .My-offer {
   margin-right: 15px;
   background-color: white;
-  //   box-shadow: 3px 2px 5px 0px #666;
   padding: 10px;
   box-sizing: border-box;
-  &:nth-child(4n) {
+  &:nth-child(8n) {
     margin-right: 0px;
   }
   margin-top: 24px;
   width: calc(100% / 4 - 15 / 4 * 3px);
   @media (max-width: $windowsWidth) {
     width: calc(100% / 3 - 15 / 3 * 2px);
-    &:nth-child(4n) {
+    &:nth-child(8n) {
       margin-right: 15px;
     }
-    &:nth-child(3n) {
+    &:nth-child(6n) {
       margin-right: 0px;
     }
   }
   @media (max-width: $largeWindow) {
-    width: calc(100% / 2 - 15 / 2);
-    &:nth-child(3n) {
+    width: calc(100% / 2 - 15 / 2 * 1px);
+    &:nth-child(6n) {
       margin-right: 15px;
     }
-    &:nth-child(2n) {
+    &:nth-child(4n) {
       margin-right: 0px;
     }
   }
   @media (max-width: $mediumWindow) {
     width: 100%;
-    &:nth-child(2n) {
+    &:nth-child(4n) {
       margin-right: 15px;
     }
     margin-right: 0px;
