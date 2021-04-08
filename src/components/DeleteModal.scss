@@ -2,6 +2,7 @@
 
 .Delete-modal {
   background-color: white;
+  height: 120px;
   margin-top: 10%;
   padding: 20px;
   border-radius: 5px;
@@ -11,7 +12,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 80vw;
+  max-width: 70vw;
+  > p {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
   .Delete-modal-buttons {
     display: flex;
     margin-top: 20px;

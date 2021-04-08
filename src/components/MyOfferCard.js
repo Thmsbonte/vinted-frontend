@@ -9,7 +9,11 @@ import DeleteModal from "./DeleteModal";
 const MyOfferCard = ({ offer, setErrorMessage }) => {
   let history = useHistory();
   const [modalDelete, setModalDelete] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Function : delete an offer
   const handleDelete = async (offer_id) => {
+    setIsLoading(true);
     const userToken = Cookies.get("userToken");
     if (offer_id) {
       try {
@@ -26,13 +30,16 @@ const MyOfferCard = ({ offer, setErrorMessage }) => {
         );
         if (response.status === 200) {
           setModalDelete(false);
+          setIsLoading(false);
           window.location.reload(false);
         }
       } catch (error) {
         setErrorMessage(error.message);
+        setIsLoading(false);
       }
     } else {
       setErrorMessage("Merci de vous connecter pour supprimer une annonce");
+      setIsLoading(false);
     }
     setModalDelete(true);
   };
@@ -44,6 +51,7 @@ const MyOfferCard = ({ offer, setErrorMessage }) => {
             handleDelete={handleDelete}
             setModalDelete={setModalDelete}
             offer_id={offer._id}
+            isLoading={isLoading}
           />
         )}
       </div>
