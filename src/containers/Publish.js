@@ -98,23 +98,24 @@ const Publish = ({
               <div className="Publish-product_picture">
                 <div className="Publish-product_picture-content">
                   {/*Display loaded picture*/}
-
-                  {preview.length > 0 &&
-                    preview.map((path, index) => {
-                      return (
-                        <div className="Picture-uploaded" key={index}>
-                          <i
-                            /*On click on the cross, we update picture preview and pictures to upload*/
-                            onClick={() => {
-                              handleDeletePicture(index);
-                            }}
-                          >
-                            <FontAwesomeIcon icon="times-circle" />
-                          </i>
-                          <img src={path} alt="Upload" />
-                        </div>
-                      );
-                    })}
+                  <div className="Publish-product_picture-content-preview">
+                    {preview.length > 0 &&
+                      preview.map((path, index) => {
+                        return (
+                          <div className="Picture-uploaded" key={index}>
+                            <i
+                              /*On click on the cross, we update picture preview and pictures to upload*/
+                              onClick={() => {
+                                handleDeletePicture(index);
+                              }}
+                            >
+                              <FontAwesomeIcon icon="times-circle" />
+                            </i>
+                            <img src={path} alt="Upload" />
+                          </div>
+                        );
+                      })}
+                  </div>
                   <div className="Upload-file">
                     {/* Add maximum 4 pictures */}
                     {picture.length < 4 ? (

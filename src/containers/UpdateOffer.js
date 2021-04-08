@@ -76,7 +76,6 @@ const UpdateOffer = ({
   // Function : handle submit form submit-> send offer data to the backend
   const handleUpdate = async (event) => {
     event.preventDefault();
-    console.log("01", price);
     const newPrice = Number(price.toString().replace(",", ".")).toFixed(2);
     setErrorMessage(""); // Initialization of an error message state
     setLoadingModal(true); // Set "loading" modal state -> display of the modal
@@ -95,7 +94,6 @@ const UpdateOffer = ({
 
     const userToken = Cookies.get("userToken");
     try {
-      console.log("02");
       const response = await axios.post(
         `${server}/offer/update/${id}`,
         formData,

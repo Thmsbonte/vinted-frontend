@@ -17,7 +17,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      // height: 250px;
       padding: 25px;
       box-sizing: border-box;
       .Update-product_picture-content {
@@ -34,7 +33,7 @@
         .Update-product_picture-content-preview {
           display: flex;
           flex-wrap: wrap;
-          height: 100%;
+          min-height: 200px;
           @media (max-width: $largeWindow) {
             justify-content: center;
           }
