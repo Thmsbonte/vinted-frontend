@@ -3,19 +3,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 import DeleteModal from "./DeleteModal";
 
 const MyOfferCard = ({ offer, setErrorMessage }) => {
   let history = useHistory();
   const [modalDelete, setModalDelete] = useState(false);
-  const handleDelete = async (offer_id, user_id) => {
-    if (offer_id && user_id) {
+  const handleDelete = async (offer_id) => {
+    const userToken = Cookies.get("userToken");
+    if (offer_id) {
       try {
         const response = await axios.post(
           "https://lereacteur-vinted-backend.herokuapp.com/offer/delete",
           {
             offer_id: offer_id,
-            user_id: user_id,
+          },
+          {
+            headers: {
+              authorization: `Bearer ${userToken}`,
+            },
           }
         );
         if (response.status === 200) {

@@ -1,7 +1,7 @@
 import "./DeleteModal.scss";
 import Cookies from "js-cookie";
 
-const DeleteModal = ({ handleDelete, setModalDelete, offer_id, user_id }) => {
+const DeleteModal = ({ handleDelete, setModalDelete, offer_id }) => {
   return (
     <div className="Modal">
       <div className="Delete-modal">
@@ -10,11 +10,7 @@ const DeleteModal = ({ handleDelete, setModalDelete, offer_id, user_id }) => {
           définitive.
         </p>
         <div className="Delete-modal-buttons">
-          <button
-            onClick={() => handleDelete(offer_id, Cookies.get("user_id"))}
-          >
-            Supprimer
-          </button>
+          <button onClick={() => handleDelete(offer_id)}>Supprimer</button>
           <button onClick={() => setModalDelete(false)}>Annuler</button>
         </div>
       </div>
