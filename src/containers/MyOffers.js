@@ -6,6 +6,7 @@ import ResponsiveMenu from "../components/ResponsiveMenu";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import MyOfferCard from "../components/MyOfferCard";
+import { Link } from "react-router-dom";
 
 const MyOffers = ({
   modal,
@@ -31,7 +32,7 @@ const MyOffers = ({
           setUserOffers(response.data);
           setIsLoading(false);
         } catch (error) {
-          setErrorMessage(error.response.data?.message);
+          setErrorMessage(error.response?.data?.message);
           setIsLoading(false);
         }
       } else {
@@ -68,7 +69,10 @@ const MyOffers = ({
                 );
               })
             ) : (
-              <p>Vous n'avez pas encore mis d'article en ligne !</p>
+              <div className="My-offers-no-offer">
+                <p>Tu n'as pas encore mis d'article en ligne !</p>
+                <Link to="/offer/publish">Vends tes articles</Link>
+              </div>
             )}
           </div>
         </div>

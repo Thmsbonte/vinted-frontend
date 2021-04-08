@@ -135,7 +135,7 @@
     }
     a {
       padding: 0 7px;
-      border-radius: 5px;
+      border-radius: 3px;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -158,9 +158,9 @@
       color: $mainColor;
       margin-right: 10px;
       height: 100%;
-      width: 170px;
+      width: 160px;
       padding: 0 7px;
-      border-radius: 5px;
+      border-radius: 3px;
       text-decoration: none;
       align-items: center;
       cursor: pointer;
@@ -189,10 +189,11 @@
     .Button-sell {
       background-color: $mainColor;
       border: solid 1px $mainColor;
+      box-sizing: border-box;
       color: white;
       margin-right: 10px;
       height: 100%;
-      width: 140px;
+      width: 160px;
       display: flex;
       justify-content: center;
       font-size: 14px;

@@ -56,7 +56,11 @@ const SignupModal = ({ setUser, modal, setModal }) => {
         "https://lereacteur-vinted-backend.herokuapp.com/user/signup",
         formData
       );
-      setUser(response.data.token, response.data.account.username); // Save user token and username information
+      setUser(
+        response.data.token,
+        response.data.account.username,
+        response.data._id
+      ); // Save user token and username information
       setLoadingMessage(false);
 
       // If user comes from the "sell article" button, we redirect him to the publish page
