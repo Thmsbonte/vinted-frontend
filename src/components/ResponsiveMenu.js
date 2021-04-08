@@ -62,6 +62,17 @@ const ResponsiveMenu = ({
           Vends tes articles
         </Link>
       )}
+      {userInfo.token && (
+        <Link
+          to="/my-offers"
+          className="Button-my-offers"
+          onClick={() => {
+            setResponsiveMenu(false);
+          }}
+        >
+          Mes articles
+        </Link>
+      )}
     </div>
   );
 };

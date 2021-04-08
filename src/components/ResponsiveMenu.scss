@@ -41,6 +41,11 @@
       text-decoration: underline;
     }
   }
+  .Button-my-offers {
+    background-color: white;
+    border: solid 1px $mainColor;
+    color: $mainColor;
+  }
   .Button-sell {
     background-color: $mainColor;
     border: solid 1px $mainColor;

@@ -76,39 +76,43 @@ const UpdateOffer = ({
   // Function : handle submit form submit-> send offer data to the backend
   const handleUpdate = async (event) => {
     event.preventDefault();
-    const newPrice = Number(price.toString().replace(",", ".")).toFixed(2);
-    setErrorMessage(""); // Initialization of an error message state
-    setLoadingModal(true); // Set "loading" modal state -> display of the modal
-    const user_id = Cookies.get("user_id");
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("brand", brand);
-    formData.append("size", size);
-    formData.append("color", color);
-    formData.append("condition", condition);
-    formData.append("location", location);
-    formData.append("price", newPrice);
-    formData.append("swap", swap);
-    formData.append("user_id", user_id);
+    if (preview.length >= 1) {
+      const newPrice = Number(price.toString().replace(",", ".")).toFixed(2);
+      setErrorMessage(""); // Initialization of an error message state
+      setLoadingModal(true); // Set "loading" modal state -> display of the modal
+      const user_id = Cookies.get("user_id");
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("brand", brand);
+      formData.append("size", size);
+      formData.append("color", color);
+      formData.append("condition", condition);
+      formData.append("location", location);
+      formData.append("price", newPrice);
+      formData.append("swap", swap);
+      formData.append("user_id", user_id);
 
-    const userToken = Cookies.get("userToken");
-    try {
-      const response = await axios.post(
-        `${server}/offer/update/${id}`,
-        formData,
-        {
-          headers: {
-            authorization: `Bearer ${userToken}`,
-          },
-        }
-      );
-      console.log("03", response.data._id);
-      setLoadingModal(false); // Re-initialize loading state when request is done (success)
-      history.push(`/offer/${response.data._id}`); // Redirection to the page of the new offer
-    } catch (error) {
-      setLoadingModal(false); // Re-initialize loading state when request is done (error)
-      setErrorMessage(error.response.data?.message); // Set an "error message" to display to the user
+      const userToken = Cookies.get("userToken");
+      try {
+        const response = await axios.post(
+          `${server}/offer/update/${id}`,
+          formData,
+          {
+            headers: {
+              authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        console.log("03", response.data._id);
+        setLoadingModal(false); // Re-initialize loading state when request is done (success)
+        history.push(`/offer/${response.data._id}`); // Redirection to the page of the new offer
+      } catch (error) {
+        setLoadingModal(false); // Re-initialize loading state when request is done (error)
+        setErrorMessage(error.response.data?.message); // Set an "error message" to display to the user
+      }
+    } else {
+      setErrorMessage("Merci d'ajouter au moins une photo.");
     }
   };
 
