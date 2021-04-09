@@ -18,7 +18,6 @@ const UpdateOffer = ({
   responsiveMenu,
 }) => {
   const server = "https://lereacteur-vinted-backend.herokuapp.com";
-  //   const server = "http://localhost:3100";
 
   // States initialization
   const [title, setTitle] = useState("");
@@ -30,7 +29,6 @@ const UpdateOffer = ({
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [swap, setSwap] = useState("");
-
   const [isLoading, setIsLoading] = useState(true);
   const [preview, setPreview] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -73,14 +71,17 @@ const UpdateOffer = ({
     fetchData();
   }, [id]);
 
-  // Function : handle submit form submit-> send offer data to the backend
+  // Function : handle form submit-> send offer data to the backend
   const handleUpdate = async (event) => {
     event.preventDefault();
+    // If no picture error message
     if (preview.length >= 1) {
-      const newPrice = Number(price.toString().replace(",", ".")).toFixed(2);
+      const newPrice = Number(price.toString().replace(",", ".")).toFixed(2); // Clean price entered
       setErrorMessage(""); // Initialization of an error message state
       setLoadingModal(true); // Set "loading" modal state -> display of the modal
       const user_id = Cookies.get("user_id");
+
+      // Creation of a formData
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
@@ -95,6 +96,7 @@ const UpdateOffer = ({
 
       const userToken = Cookies.get("userToken");
       try {
+        // Send form data to backend with bearer token for user authentication
         const response = await axios.post(
           `${server}/offer/update/${id}`,
           formData,
@@ -104,7 +106,6 @@ const UpdateOffer = ({
             },
           }
         );
-        console.log("03", response.data._id);
         setLoadingModal(false); // Re-initialize loading state when request is done (success)
         history.push(`/offer/${response.data._id}`); // Redirection to the page of the new offer
       } catch (error) {
@@ -116,6 +117,7 @@ const UpdateOffer = ({
     }
   };
 
+  // Function : delete a picture from preview and from database
   const handleDeletePicture = async (index) => {
     setLoadingPicture(true);
     const userToken = Cookies.get("userToken");
@@ -130,6 +132,7 @@ const UpdateOffer = ({
         }
       );
       const newPictures = [];
+      // As response we get a tab of offer's updated picture(s). If there are picture(s) :
       if (response.data.length > 0) {
         for (let i = 0; i < response.data.length; i++) {
           newPictures.push(response.data[i].secure_url);
@@ -148,6 +151,7 @@ const UpdateOffer = ({
     }
   };
 
+  // Function : add picture to preview and to database
   const handleAddPicture = async (event, offer_id) => {
     setLoadingPicture(true);
     const formData = new FormData();
@@ -155,6 +159,7 @@ const UpdateOffer = ({
     formData.append("offer_id", offer_id);
     const userToken = Cookies.get("userToken");
     try {
+      // Send form data with new picture to backend
       const response = await axios.post(
         `${server}/offer/updatepicture`,
         formData,
@@ -166,6 +171,7 @@ const UpdateOffer = ({
       );
       if (response.status === 200) {
         const newPreview = [...preview];
+        // As response we get a tab of offer's updated picture(s). Push tab in preview state.
         newPreview.push(response.data.secure_url);
         setPreview(newPreview);
         setLoadingPicture(false);

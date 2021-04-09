@@ -21,7 +21,6 @@ const LabeledTwoThumbs = ({
         justifyContent: "center",
         flexWrap: "wrap",
         width: "100%",
-        // zIndex: 0,
       }}
     >
       <Range
@@ -30,21 +29,21 @@ const LabeledTwoThumbs = ({
         min={MIN}
         max={MAX}
         rtl={rtl}
-        // On change, update of filters value and send of a new data offers request
+        // On change, update filters value and send of a new data offers request
         onChange={(values) => {
           setValues(values);
-          const newFilters = { ...filters };
-          newFilters.priceMin = values[0];
-          newFilters.priceMax = values[1];
-          setFilters(newFilters);
           fetchData(
             filters.title,
-            newFilters.priceMin,
-            newFilters.priceMax,
+            values[0],
+            values[1],
             filters.sort,
             filters.skip,
             filters.limit
           );
+          const newFilters = { ...filters };
+          newFilters.priceMin = values[0];
+          newFilters.priceMax = values[1];
+          setFilters(newFilters);
         }}
         renderTrack={({ props, children }) => (
           <div

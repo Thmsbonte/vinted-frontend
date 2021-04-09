@@ -19,16 +19,19 @@ const CheckoutForm = ({ offer_id, offer }) => {
   const totalPrice =
     Number(offer.product_price) + protectionFees + deliveryFees;
 
+  // Function : send payment request
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setLoadingModal(true);
-
+    // We retrieve bank card data that user entered
     const cardElement = elements.getElement(CardElement);
     try {
+      // Request to create a Stripe token for the transaction
       const stripeResponse = await stripe.createToken(cardElement, {
         name: user_id,
       });
       const stripeToken = stripeResponse.token.id;
+      // Request to the backend with the Stripe token
       try {
         const response = await axios.post(
           "https://lereacteur-vinted-backend.herokuapp.com/payment",
@@ -40,7 +43,7 @@ const CheckoutForm = ({ offer_id, offer }) => {
         );
         response.data.status === "succeeded" && setCompleted(true);
         setLoadingModal(false);
-        // Automatic redirection to home page
+        // If OK, automatic redirection to home page
         setTimeout(() => {
           history.push("/reload");
           window.location.reload(false);

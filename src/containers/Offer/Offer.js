@@ -20,7 +20,7 @@ const Offer = ({
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [image, setImage] = useState(0); // Allow to determine which image is displayed in big
+  const [image, setImage] = useState(0); // Main image index in the images tab
 
   // Get offer information only once at the opening of the page
   useEffect(() => {
@@ -56,6 +56,7 @@ const Offer = ({
           <div className="Offer container">
             <div className="Offer-product_images">
               <div className="Offer-product_other_images">
+                {/* Display of offer all offer images on the side (small format) when they exist*/}
                 {offer.product_image[0] &&
                   offer.product_image.map((elem, index) => {
                     return (
@@ -63,6 +64,7 @@ const Offer = ({
                         src={elem.secure_url}
                         alt="Product"
                         key={index}
+                        // On click we save the image index to display the image as the main one and we add a border
                         onClick={() => {
                           setImage(index);
                         }}

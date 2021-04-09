@@ -19,7 +19,10 @@ const MyOffers = ({
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [userOffers, setUserOffers] = useState([]);
+
+  // At the opening of the page and only once :
   useEffect(() => {
+    // Get user's online onffers
     const fetchData = async (userId) => {
       if (userId) {
         try {
@@ -80,6 +83,7 @@ const MyOffers = ({
       <Footer />
     </>
   ) : (
+    // When mobile, display a mobile menu on menu click
     <>
       <ResponsiveMenu
         userInfo={userInfo}

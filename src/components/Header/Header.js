@@ -19,10 +19,26 @@ const Header = ({
   responsiveMenu,
   setResponsiveMenu,
 }) => {
-  // UseHistory initialization
+
+  const [headerMenu, setHeaderMenu] = useState(false); // Header dropdown menu
   const history = useHistory();
 
-  const [headerMenu, setHeaderMenu] = useState(false);
+// Function : inverse asc/desc sort filter value and send new offer data request
+  const handleAscDescPriceFilter = ()=>{
+    const newFilters = { ...filters };
+                    newFilters.sort === "price-asc"
+                      ? (newFilters.sort = "price-desc")
+                      : (newFilters.sort = "price-asc");
+                    setFilters(newFilters);
+                    fetchData(
+                      filters.title,
+                      filters.priceMin,
+                      filters.priceMax,
+                      newFilters.sort,
+                      filters.skip,
+                      filters.limit
+                    );
+  }
 
   return (
     <>
@@ -58,22 +74,8 @@ const Header = ({
                 <p>Trier par prix</p>
                 <div
                   className="Filter-sort"
-                  // Send new data request with sorted parameter updated
-                  onClick={() => {
-                    const newFilters = { ...filters };
-                    newFilters.sort === "price-asc"
-                      ? (newFilters.sort = "price-desc")
-                      : (newFilters.sort = "price-asc");
-                    setFilters(newFilters);
-                    fetchData(
-                      filters.title,
-                      filters.priceMin,
-                      filters.priceMax,
-                      newFilters.sort,
-                      filters.skip,
-                      filters.limit
-                    );
-                  }}
+                  // Send new data request with asc/desc sorted parameter updated
+                  onClick={handleAscDescPriceFilter}
                 >
                   <i
                     style={

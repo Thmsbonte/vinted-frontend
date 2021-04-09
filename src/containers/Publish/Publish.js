@@ -27,20 +27,22 @@ const Publish = ({
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [swap, setSwap] = useState(false);
-
   const [preview, setPreview] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [loadingModal, setLoadingModal] = useState(false);
 
   const history = useHistory();
 
-  // Function : handle submit form submit-> send offer data to the backend
+  // Function : send offer data to the backend
   const handleOnSubmit = async (event) => {
-    const newPrice = Number(price.replace(",", ".")).toFixed(2);
+    const newPrice = Number(price.replace(",", ".")).toFixed(2); // Clean price entered
     event.preventDefault();
     setErrorMessage(""); // Initialization of an error message state
     setLoadingModal(true); // Set "loading" modal state -> display of the modal
+
+    // Creation of a formData
     const formData = new FormData();
+    // For each picture uploaded, create a formData file input
     for (let i = 0; i < picture.length; i++) {
       formData.append(`picture${i}`, picture[i]);
     }
@@ -59,6 +61,7 @@ const Publish = ({
     // const server = "http://localhost:3100/offer/publish";
     const userToken = Cookies.get("userToken");
     try {
+      // Send form data to backend with bearer token for user authentication
       const response = await axios.post(server, formData, {
         headers: {
           authorization: `Bearer ${userToken}`,
@@ -72,6 +75,7 @@ const Publish = ({
     }
   };
 
+  // Function : delete picture from preview and picture to upload states
   const handleDeletePicture = (index) => {
     const numberOfPicture = picture.length;
     const newPicture = [...picture];
@@ -136,7 +140,6 @@ const Publish = ({
                       <p>Vous pouvez ajouter 4 photos maximum.</p>
                     )}
                     <input
-                      // multiple={true}
                       accept=".jpg, .jpeg, .png"
                       type="file"
                       name="newOffer_picture"

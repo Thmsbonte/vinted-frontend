@@ -10,6 +10,7 @@ import ResponsiveMenu from "../../components/ResponsiveMenu/ResponsiveMenu";
 const stripePromise = loadStripe(
   "pk_test_51ILU3GD8pKdAtwrKx8M5VPy6jeJ40IToklFd6C7T3nRdFDDeFvdk34Mqi70WTXmBVz9nMBHdTZ9cora5v3j2HEn2000zwgBuIr"
 );
+// const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_SECRET);
 
 const Payment = ({
   modal,
