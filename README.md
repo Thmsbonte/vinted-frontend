@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-	<img src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/vinted-gif-preview2.gif">
+	<img src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/Vinted-gif-preview2.gif">
 </p>
 
 ## Overview
