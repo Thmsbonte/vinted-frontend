@@ -105,7 +105,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
           } else {
             setLoadingMessage(false);
             setErrorMessage(
-              "Le mot de passe doit contenir minimum 8 caractères dont 1 minuscule, 1 majuscule, un chiffre et un caractère spécial"
+              "Le mot de passe doit contenir minimum 8 caractères dont 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial"
             );
           }
         } else {
