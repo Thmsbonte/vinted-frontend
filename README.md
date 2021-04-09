@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-	<img src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/vinted-gif-preview.gif">
+	<img src="https://github.com/Thmsbonte/vinted-frontend/blob/main/preview/vinted-gif-preview2.gif">
 </p>
 
 ## Overview
@@ -11,15 +11,17 @@
 Partial clone of Vinted website realized while learning React.
 ⚠️ The website is not complete, it only contains the following pages : ⚠️ 
 - Home page
-- Article details
+- Offer details
+- Publish a new offer
+- My offers
+- Modify an offer
 - Payment
-- Publish a new article
 - About
 
 ### Main features
 - **Login** and **Signup**
 - **Search** with filters
-- **Publish** a new article
+- **Publish and modify** an offer
 - **Pay** and buy with Stripe
 
 ### Screenshots
