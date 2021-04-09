@@ -1,0 +1,44 @@
+@import "../../Variables.scss";
+
+.My-offers {
+  background-color: #ebedee;
+  min-height: calc(100vh - 226px);
+  padding-bottom: 20px;
+  .My-offers-main {
+    padding-top: 20px;
+    box-sizing: border-box;
+    > p {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+
+    .My-offers-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .My-offers-no-offer {
+      margin-top: 20px;
+      margin-left: 10px;
+      > p {
+        color: #666666;
+        margin-bottom: 20px;
+      }
+      > a {
+        background-color: $mainColor;
+        border: solid 1px $mainColor;
+        color: white;
+        margin-right: 10px;
+        height: 30px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        padding: 0 7px;
+        border-radius: 3px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -7,9 +7,14 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import Offer from "./containers/Offer";
-import Home from "./containers/Home";
-import Header from "./components/Header";
+import Offer from "./containers/Offer/Offer";
+import Home from "./containers/Home/Home";
+import Header from "./components/Header/Header";
+import Publish from "./containers/Publish/Publish";
+import Payment from "./containers/Payment/Payment";
+import About from "./containers/About/About";
+import MyOffers from "./containers/MyOffers/MyOffers";
+import UpdateOffer from "./containers/UpdateOffer/UpdateOffer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import axios from "axios";
 import {
@@ -26,11 +31,6 @@ import {
   faSortUp,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-import Publish from "./containers/Publish";
-import Payment from "./containers/Payment";
-import About from "./containers/About";
-import MyOffers from "./containers/MyOffers";
-import UpdateOffer from "./containers/UpdateOffer";
 library.add(
   faSearch,
   faQuestion,

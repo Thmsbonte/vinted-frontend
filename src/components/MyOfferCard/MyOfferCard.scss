@@ -1,0 +1,116 @@
+@import "../../Variables.scss";
+
+.My-offer {
+  margin-right: 15px;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  &:nth-child(8n) {
+    margin-right: 0px;
+  }
+  margin-top: 24px;
+  width: calc(100% / 4 - 15 / 4 * 3px);
+  @media (max-width: $windowsWidth) {
+    width: calc(100% / 3 - 15 / 3 * 2px);
+    &:nth-child(8n) {
+      margin-right: 15px;
+    }
+    &:nth-child(6n) {
+      margin-right: 0px;
+    }
+  }
+  @media (max-width: $largeWindow) {
+    width: calc(100% / 2 - 15 / 2 * 1px);
+    &:nth-child(6n) {
+      margin-right: 15px;
+    }
+    &:nth-child(4n) {
+      margin-right: 0px;
+    }
+  }
+  @media (max-width: $mediumWindow) {
+    width: 100%;
+    &:nth-child(4n) {
+      margin-right: 15px;
+    }
+    margin-right: 0px;
+  }
+  display: flex;
+  flex-direction: column;
+  .My-offer-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    img {
+      height: 30px;
+      width: 30px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    p {
+      color: #999999;
+      margin-left: 10px;
+      font-size: 12px;
+      font-weight: 100;
+    }
+  }
+  .My-offer-picture {
+    height: 300px;
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: pointer;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .My-offer-info {
+    display: flex;
+    flex-direction: column;
+    .My-offer-info-top {
+      display: flex;
+      justify-content: space-between;
+      .My-offer-info-left {
+        p {
+          color: #999999;
+          font-size: 14px;
+          font-weight: 100;
+          line-height: 18px;
+        }
+        span {
+          font-weight: 400;
+          color: black;
+          font-size: 16px;
+        }
+      }
+      .My-offer-info-right {
+        .Icon-heart {
+          color: $mainColor;
+        }
+      }
+    }
+    .My-offer-buttons {
+      display: flex;
+      flex-direction: column;
+      button {
+        background-color: white;
+        border: 1px solid $mainColor;
+        margin-top: 10px;
+        padding: 10px;
+        color: #666666;
+        border-radius: 3px;
+        font-size: 16px;
+        cursor: pointer;
+        box-sizing: border-box;
+        &:hover {
+          background-color: #ececec;
+          border: none;
+        }
+      }
+    }
+  }
+}
+.Modal-delete {
+  position: absolute;
+}

@@ -1,0 +1,104 @@
+@import "../../Variables.scss";
+
+.Hero-background {
+  height: 500px;
+  @media (max-width: $largeWindow) {
+    height: 400px;
+  }
+  @media (max-width: $mediumWindow) {
+    height: 300px;
+  }
+  background-color: rgb(236, 229, 229);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("../../assets/img/02_00654_RyZFVBBR4A3mtBFthzCWEqxj.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .Hero {
+    .Hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: white;
+      height: 250px;
+      width: 350px;
+      padding: 34px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      @media (max-width: $mediumWindow) {
+        display: none;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+      .Button-sell {
+        background-color: $mainColor;
+        border: solid 1px $mainColor;
+        text-decoration: none;
+        color: white;
+        height: 40px;
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 0 10px;
+        margin-top: 40px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .link {
+        color: $mainColor;
+        text-decoration: none;
+        margin-top: 20px;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.Responsive {
+  display: none;
+  @media (max-width: $mediumWindow) {
+    display: flex;
+    justify-content: center;
+  }
+  .Hero-content-responsive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    h1 {
+      font-size: 26px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .Button-sell {
+      width: 100%;
+      background-color: $mainColor;
+      border: solid 1px $mainColor;
+      text-decoration: none;
+      color: white;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 5px;
+      padding: 0 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .link {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: $mainColor;
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+  }
+}

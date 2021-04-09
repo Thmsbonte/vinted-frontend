@@ -1,0 +1,76 @@
+@import "../../Variables.scss";
+
+.About {
+  height: calc(100vh - 226px);
+  display: flex;
+  p {
+    color: #535353;
+  }
+  a {
+    text-decoration: none;
+    color: $mainColor;
+  }
+
+  .About-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    h2 {
+      color: $mainColor;
+      font-size: 26px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+    .About-information {
+      ul {
+        margin-top: 20px;
+      }
+      li {
+        display: flex;
+        margin-top: 5px;
+        i {
+          color: $mainColor;
+          margin-right: 10px;
+          margin-left: 20px;
+        }
+      }
+    }
+    .Github-links {
+      margin-top: 20px;
+    }
+    .Back-to-home {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      > a {
+        background-color: $mainColor;
+        border: solid 1px $mainColor;
+        color: white;
+        margin-right: 10px;
+        height: 40px;
+        width: 240px;
+        display: flex;
+        justify-content: center;
+        padding: 0 7px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .About-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    @media (max-width: $largeWindow) {
+      display: none;
+    }
+    img {
+      height: 400px;
+      width: 400px;
+      object-fit: cover;
+    }
+  }
+}
