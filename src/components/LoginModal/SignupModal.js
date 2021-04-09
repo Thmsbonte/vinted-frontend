@@ -61,7 +61,7 @@ const SignupModal = ({ setUser, modal, setModal }) => {
       if (emailRegex.test(credentials.email)) {
         if (phoneRegex.test(credentials.phone)) {
           if (passwordRegex.test(credentials.password)) {
-            // If all regex are validated, send the form
+            // If all regex are validated, create and send the form
             const formData = new FormData();
             formData.append("username", credentials.username);
             formData.append("email", credentials.email);
@@ -74,11 +74,12 @@ const SignupModal = ({ setUser, modal, setModal }) => {
                 "https://lereacteur-vinted-backend.herokuapp.com/user/signup",
                 formData
               );
+              // If success, call setUser to create user's cookies
               setUser(
                 response.data.token,
                 response.data.account.username,
                 response.data._id
-              ); // Save user token and username information
+              );
               setLoadingMessage(false);
 
               // If user comes from the "sell article" button, we redirect him to the publish page

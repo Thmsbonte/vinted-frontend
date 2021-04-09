@@ -35,7 +35,7 @@ const LoginModal = ({ setUser, modal, setModal, setResponsiveMenu }) => {
         "https://lereacteur-vinted-backend.herokuapp.com/user/login",
         credentials
       );
-      // Save user token and username information
+      // If success call setUser to save user's information in cookies
       setUser(
         response.data.token,
         response.data.account.username,
