@@ -18,6 +18,8 @@ Partial clone of Vinted website realized while learning React.
 - Payment
 - About
 
+Possible to test here : https://thmsbonte-vinted.netlify.app/
+
 ### Main features
 - **Login** and **Signup**
 - **Search** with filters
